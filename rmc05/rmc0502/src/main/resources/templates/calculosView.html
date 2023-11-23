@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <form action="#" method="post" th:action="@{/calculos/primo/submit}"
+    th:object="${formCalc1}">
+        <span>Calcular primo</span><br/>
+        <label>Número:
+            <input type="text" id="num" th:field="*{num}"/>
+        </label>
+        <input type="submit"/>
+    </form><br/>
+
+    <!-- <form action="#" method="post" th:action="@{/calculos/hipotenusa/submit}"
+    th:object="${formHipo}">
+        <span>Calcular hipotenusa</span><br/>
+        <label>Cateto 1:
+            <input type="text" id="num1" th:field="*{num1}"/>
+        </label><br/>
+        <label>Cateto 2:
+            <input type="text" id="num2" th:field="*{num2}"/>
+        </label>
+        <input type="submit"/>
+    </form><br/>
+
+    <form action="#" method="post" th:action="@{/calculos/divisores/submit}"
+    th:object="${formCalc2}">
+        <span>Calcular divisores</span><br/>
+        <label>Número:
+            <input type="text" id="num" th:field="*{num}"/>
+        </label>
+        <input type="submit"/>
+    </form> -->
+    
+</body>
+</html>

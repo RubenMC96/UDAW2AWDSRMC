@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en"></html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+   
+    <title>Ejercio 5.1</title>
+</head>
+<body>
+
+    <form action="#" method="post" th:action ="@{/home/submit}" th:object="${formData}">
+        <label>Nombre:
+            <input type="text" id="nombre" th:field="*{nombre}">
+        </label><br/>
+        <label>Edad:
+            <input type="text" id="edad" th:field="*{edad}">
+        </label>
+        <input type="submit" value="Enviar"/>
+    </form>
+    
+</body>
+</html>

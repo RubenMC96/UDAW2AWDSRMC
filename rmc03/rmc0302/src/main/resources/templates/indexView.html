@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en"></html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 3.2</title>
+</head>
+<body>
+
+    <ul>
+        <li>
+        <a th:href="@{/contacto}">Contacto</a> 
+        </li>
+        <li>
+            <a th:href="@{/productos}">Productos</a> 
+        </li>
+        <li>
+            <a th:href="@{/quienes-somos}">Quienes somos</a> 
+        </li>
+    </ul>
+
+    <footer>
+        &copy; <span  th:text="${fecha}"></span>
+    </footer>
+    
+</body>
+</html>

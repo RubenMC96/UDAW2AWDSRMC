@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en"></html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divisores</title>
+</head>
+<body>
+
+    <h1>Listado de divisores</h1>
+    <table border="1px">
+
+        <thead><th th:text="'Divisores de ' + ${formCalc.num}">*</th></span></thead>
+        <tr th:each="numero: ${divisores}">
+            <td>
+                <a th:href="@{/calculos/divisores/{n}(n=${numero})}">
+                    <span th:text="${numero}"></span>
+                </a>
+            </td>
+           
+            
+        </tr>
+    </table>
+
+</body>
+</html>

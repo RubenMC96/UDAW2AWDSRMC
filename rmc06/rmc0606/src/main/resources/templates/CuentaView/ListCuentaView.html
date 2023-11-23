@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="wIBANth=device-wIBANth, initial-scale=1" />
+    <script>
+      function changeCategory() {
+        window.location.href =
+          "/cuenta/list/" + document.getElementByIBAN("select").value;
+      }
+    </script>
+    <title>Cuentas CRUD</title>
+  </head>
+  <body>
+    <!-- -->
+    <!-- <h2>Movimiento: <span th:text="${movSeleccionado.IBAN}">default</h2> -->
+
+    <h1>Listado de cuentas de la empresa</h1>
+    <table border="1px">
+      <thead>
+        <tr>
+          <th>IBAN</th>
+          <th>Nombre</th>
+          <th>Saldo</th>
+          <!-- <th>Movimientos</th> -->
+          <th>Editar</th>
+          <th>Borrar</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr th:each="cuenta : ${listaCuentas}">
+          <td th:text="${cuenta.IBAN}">IBAN</td>
+          <td th:text="${cuenta.nombre}">Nombre</td>
+          <td th:text="${cuenta.saldo}">Saldo</td>
+          <td>
+            <a th:href="@{/cuenta/editar/{IBAN}(IBAN=${cuenta.IBAN})}"
+              >Editar</a
+            >
+          </td>
+          <td>
+            <a th:href="@{/cuenta/borrar/{IBAN}(IBAN=${cuenta.IBAN})}"
+              >Borrar</a
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <a th:href="@{/inicio}">Inicio</a><br />
+    <a th:href="@{/cuenta/nuevo}">Nueva cuenta</a><br />
+    <a th:href="@{/movimiento/nuevo}">Nuevo movimiento</a><br />
+  </body>
+</html>

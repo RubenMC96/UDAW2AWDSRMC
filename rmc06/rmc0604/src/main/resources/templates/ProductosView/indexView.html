@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Productos CRUD</title>
+  </head>
+  <body>
+    <h1>Listado de productos de la tienda</h1>
+    <table border="1px">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>En oferta</th>
+          <th>Tipo Iva</th>
+          <th>Precio</th>
+          <th>Editar</th>
+          <th>Borrar</th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        <tr th:each="producto : ${listaProductos}">
+          <td th:text="${producto.id}">Id</td>
+          <td th:text="${producto.nombre}">Nombre</td>
+          <td th:text="${producto.oferta}">¿Oferta?</td>
+          <td th:text="${producto.tipoIva}">IVA</td>
+          <td th:text="${producto.precio}">Precio</td>
+          <td><a th:href="@{/editar/{id}(id=${producto.id})}">Editar</a></td>
+          <td><a th:href="@{/borrar/{id}(id=${producto.id})}">Borrar</a></td>
+        </tr>
+      </tbody>
+    </table>
+    <a th:href="@{/}">Inicio</a><br />
+    <a th:href="@{/producto/nuevo}">Nuevo producto</a><br />
+  </body>
+</html>

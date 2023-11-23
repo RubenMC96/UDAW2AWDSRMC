@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="#" method="post" th:action="@{/calcular/submit}" th:object="${formFecha}">
+        <span>Calcular dia entre fechas</span><br/>
+        <label>Fecha 1:
+            <input type="text" id="num" th:field="*{fecha1}"/>
+        </label><br/>
+        <label>Fecha 2:
+            <input type="text" id="num" th:field="*{fecha2}"/>
+        </label><br/>
+        <label>
+            <input type="radio" name="opcion" value="dias" th:field="*{opcion}">
+            Días entre fechas
+        </label><br/>
+        <label>
+            <input type="radio" name="opcion" value="bisiesto" th:field="*{opcion}">
+            Años bisiestos entre fechas
+        </label><br/>
+        <input type="submit"/>
+        <span th:text="${result}"></span>
+    </form>
+</body>
+</html>

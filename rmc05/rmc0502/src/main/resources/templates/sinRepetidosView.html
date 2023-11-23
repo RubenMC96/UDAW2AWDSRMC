@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en"></html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sin repetidos</title>
+</head>
+<body>
+
+    <h1>Listado de numeros aleatorios</h1>
+    <table border="1px">
+
+        <thead><th>Numeros</th></thead>
+        <tr th:each="aleatorio: ${listaAleatorios}">
+            <td th:text="${aleatorio}">Numero</td>
+        </tr>
+    </table>
+</body>
+</html>

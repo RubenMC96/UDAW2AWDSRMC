@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en"></html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio</title>
+</head>
+<body>
+
+    <img src="./logo estudiante.png" alt="img alumno" height="50px" width="50px">
+    Soy un <span th:text="${tipo}">*</span>
+    <a href="@{/index(name=${nomb})}"><button>Volver al index</button></a>
+
+    <table>
+        <tr th:each="producto:${nombProduct}">
+            <td th:text="${producto}">*</td>
+        </tr>
+    </table>
+    
+</body>
+</html>

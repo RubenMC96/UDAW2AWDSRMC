@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en"></html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 3.3</title>
+    <select onchange="this.form.submit()" th:field="*{nombre}">
+</head>
+<body>
+
+    <form action="#" method="post" th:action="@{/formulario/submit}">
+        
+       
+        <span>Información de paises</span>
+        <label for="opciones">
+            <select name="opciones" id="opciones">
+                <option value="España">España</option>
+                <option value="Portugal">Portugal</option>
+                <option value="Francia">Francia</option>
+                <option value="Suiza">Suiza</option>
+                <option value="Italia">Italia</option>
+                <option value="Alemania">Alemania</option>
+                <option value="Belgica">Belgica</option>
+            </select>
+        </label>
+        <select onchange="this.form.submit()" th:field="*{nombre}"></select>
+       
+    </form>
+    
+</body>
+</html>

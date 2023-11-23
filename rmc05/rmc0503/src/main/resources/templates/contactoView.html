@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en"></html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2.4</title>
+</head>
+<body>
+
+    <img src="./logo git.jpg" alt="logo github" height="50px" width="50px">
+
+    <a href="https://github.com/RubenMC96/UDAW2AWDSRMC"><span>Mi repositorio</a></a></span>
+
+
+    <form action="#" method="post" th:action="@{/formulario/submit}">
+        <label for="nombre"> Nombre:
+            <input type="text" id="nombre" th:field="*{nombre}">
+        </label>
+        <label for="email"> Email:
+            <input type="text" id="email" th:field="*{email}">
+        </label>
+        <label for="opciones"> Opciones:
+            <select name="opciones" id="opciones">
+                <option value="queja">Queja</option>
+                <option value="consulta">consulta</option>
+                <option value="otros">Otros</option>
+            </select>
+        </label>
+        <label for="comentario">Comentarios:
+            <textarea name="comentario" id="comentario"></textarea>
+        </label>
+        <input type="checkbox" id="chek" name="chek" value="Aceptado" th:field="*{aceptar}">
+        <label for="chek">Aceptar las condiciones del servicio.</label>
+        <input type="submit">
+    </form>
+
+
+    <a href="@{/index(name=${nomb})}"><button>Volver al index</button></a>
+    
+</body>
+</html>

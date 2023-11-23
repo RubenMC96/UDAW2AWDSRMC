@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="/src/main/java/com/rmc/ejerciciosT6/controller/EmpleadoController.java"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Nuevo movimiento</h1>
+    <form
+      method="post"
+      action="#"
+      th:action="@{/movimiento/nuevo/submit}"
+      th:object="${movimientoForm}"
+    >
+      <label>IBAN:<input type="text" id="IBAN" th:field="*{IBAN}" /> </label>
+      <label><input type="text" id="data" th:field="*{data}" hidden /></label
+      ><br />
+      <label
+        >Importe:
+        <input type="text" id="importe" th:field="*{importe}" /></label
+      ><br />
+      <input type="submit" value="Enviar" />
+    </form>
+    <a th:href="@{/inicio/}">Inicio</a><br />
+  </body>
+</html>
