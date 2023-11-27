@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="/src/main/java/com/rmc/ejerciciosT6/controller/EmpleadoController.java"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Nuevo empleado</h1>
+    <form
+      method="post"
+      action="#"
+      th:action="@{/departamento/editar/submit}"
+      th:object="${departamentoForm}"
+    >
+      <label
+        >Id:<input
+          type="text"
+          readonly
+          id="id"
+          th:field="*{id}"
+          readonly
+        /> </label
+      ><br />
+      <label
+        >Nombre: <input type="text" id="nombre" th:field="*{nombre}" /></label
+      ><br />
+      <div th:classappend="${#fields.hasErrors('email')} ? 'cssError'">
+        <label
+          >Email:<input type="text" id="email" th:field="*{email}" />
+          <span
+            th:if="${#fields.hasErrors('email')}"
+            th:errors="*{email}"
+            class="cssError"
+            >texto error</span
+          >
+        </label>
+      </div>
+      <input type="submit" value="Enviar" />
+    </form>
+    <a th:href="@{/}">Inicio</a><br />
+  </body>
+</html>

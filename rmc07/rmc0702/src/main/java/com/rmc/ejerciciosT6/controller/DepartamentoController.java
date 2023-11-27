@@ -7,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.rmc.ejerciciosT6.domain.Departamento;
 import com.rmc.ejerciciosT6.service.DepartamentoService;
@@ -14,57 +15,61 @@ import com.rmc.ejerciciosT6.service.DepartamentoService;
 import jakarta.validation.Valid;
 
 @Controller
+@RequestMapping("/departamento")
 public class DepartamentoController {
+    
     @Autowired
     public DepartamentoService departamentoService;
 
+    
+
     @GetMapping({ "/", "/list" })
-    public String showList(Model model) {
+    public String showListDTO(Model model) {
         model.addAttribute("listaDepartamentos", departamentoService.obtenerTodos());
         return "departementoView";
     }
 
     @GetMapping("/nuevo")
-    public String showNew(Model model) {
+    public String showNewDTO(Model model) {
         // el commandobject del formulario es una instancia de empleado vacia
         model.addAttribute("departamentoForm", new Departamento());
-        return "departementoFormNew";
+        return "FormNewDTO";
     }
 
     @PostMapping("/nuevo/submit")
-    public String showNewSubmit(
+    public String showNewSubmitDTO(
             @Valid Departamento departementoForm,
             BindingResult bindingResult) {
         if (bindingResult.hasErrors())
-            return "redirect:/nuevo";
+            return "redirect:/departamento/nuevo";
         departamentoService.añadir(departementoForm);
-        return "redirect:/list";
+        return "redirect:/departamento/list";
     }
 
     @GetMapping("/editar/{id}")
-    public String showEditForm(@PathVariable long id, Model model) {
+    public String showEditFormDTO(@PathVariable long id, Model model) {
         Departamento departamento = departamentoService.obtenerPorId(id);
         // el commandobject del formulario es el empleado con el id solicitado
         if (departamento != null) {
             model.addAttribute("departementoForm", departamento);
-            return "departamentoFormEdit";
+            return "FormEditDTO";
         }
         // si no lo encuentra vuelve a la página de inicio.
-        return "redirect:/list";
+        return "redirect:/departamento/list";
     }
 
     @PostMapping("/editar/submit")
-    public String showEditSubmit(
+    public String showEditSubmitDTO(
             @Valid Departamento departamentoForm,
             BindingResult bindingResult) {
         if (!bindingResult.hasErrors())
             departamentoService.editar(departamentoForm);
-        return "redirect:/list";
+        return "redirect:/departamento/list";
     }
 
     @GetMapping("/borrar/{id}")
-    public String showDelete(@PathVariable long id) {
+    public String showDeleteDTO(@PathVariable long id) {
         departamentoService.borrar(id);
-        return "redirect:/list";
+        return "redirect:/departamento/list";
     }
 }

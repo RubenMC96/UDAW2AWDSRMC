@@ -9,7 +9,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import com.rmc.ejerciciosT6.domain.Empleado;
 import com.rmc.ejerciciosT6.service.EmpleadoService;
 
@@ -70,19 +69,4 @@ public class EmpleadoController {
         return "redirect:/list";
     }
 
-    @GetMapping("/listado1/{salario}")
-    public String showListado1(@PathVariable Double salario, Model model) {
-        List<Empleado> empleados = empleadoService.obtenerEmpleadosSalarioMayor (salario);
-        model.addAttribute("tituloListado", "Empleados salario mayor que" +
-        salario.toString());
-        model.addAttribute("listaEmpleados", empleados);
-        return "listadosView";
-    }
-    @GetMapping("/listado2")
-    public String showListado2(Model model) {
-        List<Empleado> empleados = empleadoService.obtenerEmpleadoSalarioMayorMedia();
-        model.addAttribute("tituloListado", "Empleados salario mayor que la media");
-        model.addAttribute("listaEmpleados", empleados);
-        return "listadosView";
-    }
 }
