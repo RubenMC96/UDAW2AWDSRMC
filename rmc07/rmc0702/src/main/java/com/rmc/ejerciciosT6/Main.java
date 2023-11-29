@@ -5,6 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import com.rmc.ejerciciosT6.domain.Departamento;
 import com.rmc.ejerciciosT6.domain.Empleado;
 import com.rmc.ejerciciosT6.domain.Genero;
 import com.rmc.ejerciciosT6.service.EmpleadoService;
@@ -27,7 +28,7 @@ public class Main {
 							Genero.MASCULINO));
 					
 				empleadoService.añadir(
-					new Empleado(0L, "ana", "ana@gmail.com", 2000d, true, Genero.FEMENINO));
+					new Empleado(0L, "ana", "ana@gmail.com", 2000d, true, Genero.FEMENINO, new Departamento()));
 			};
 		}
 

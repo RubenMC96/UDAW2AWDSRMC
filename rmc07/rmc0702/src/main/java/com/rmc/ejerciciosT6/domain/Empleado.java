@@ -3,6 +3,7 @@ package com.rmc.ejerciciosT6.domain;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
@@ -16,7 +17,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 @Entity
+
 public class Empleado {
+    @ManyToOne
+    private Departamento departamento;
     @Id
     @GeneratedValue
     @Min(value = 0)
