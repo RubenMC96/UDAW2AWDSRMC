@@ -19,8 +19,7 @@ import lombok.NoArgsConstructor;
 @Entity
 
 public class Empleado {
-    @ManyToOne
-    private Departamento departamento;
+   
     @Id
     @GeneratedValue
     @Min(value = 0)
@@ -32,4 +31,7 @@ public class Empleado {
         private Double salario;
         private boolean enActivo;
         private Genero genero;
+
+    @ManyToOne
+    private Departamento departamento;
 }

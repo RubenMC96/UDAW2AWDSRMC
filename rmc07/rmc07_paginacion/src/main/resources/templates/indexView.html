@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Empleado CRUD</title>
+  </head>
+  <body>
+    <h1>Listado de empleados</h1>
+    <table>
+      <thead>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Salario</th>
+      </thead>
+      <tbody>
+        <tr th:each="empleado : ${listaEmpleados}">
+          <td th:text="${empleado.id}">Id</td>
+          <td th:text="${empleado.nombre}">nombre</td>
+          <td th:text="${empleado.email}">email@gmail.com</td>
+          <td th:text="${empleado.salario}">0</td>
+        </tr>
+      </tbody>
+    </table>
+    <a th:href="@{/?pag=0}">Pág inicial</a>&nbsp;|&nbsp;
+    <a th:href="@{/(pag=${pagAnterior})}">Pág ant</a>&nbsp;|&nbsp;
+    <a th:href="@{/(pag=${pagSiguiente})}">Pág sig</a>&nbsp;|&nbsp;
+    <a th:href="@{/(pag=${pagFinal})}">Utl.pág</a>
+  </body>
+</html>

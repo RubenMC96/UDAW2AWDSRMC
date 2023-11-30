@@ -25,7 +25,9 @@ public class DepartamentoController {
 
     @GetMapping({ "/", "/list" })
     public String showListDTO(Model model) {
+        model.addAttribute("listaEmpleados", departamentoService.obtenerTodos());
         model.addAttribute("listaDepartamentos", departamentoService.obtenerTodos());
+        model.addAttribute("deptoSeleccionado", 0);
         return "departementoView";
     }
 

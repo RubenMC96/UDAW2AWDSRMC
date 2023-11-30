@@ -2,7 +2,10 @@ package com.rmc.ejerciciosT6.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,11 +17,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 @Entity
-public class Departamento {
+public class Empleado {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Min(value = 0)
         private Long id;
     @NotEmpty
         private String nombre;
-
+    @Email(message = "Debe tener formato email valido")
+        private String email;
+        private Double salario;
 }

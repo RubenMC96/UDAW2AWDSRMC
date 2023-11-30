@@ -8,7 +8,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
 import com.rmc.ejerciciosT6.domain.Empleado;
+import com.rmc.ejerciciosT6.service.DepartamentoService;
 import com.rmc.ejerciciosT6.service.EmpleadoService;
 
 import jakarta.validation.Valid;
@@ -17,6 +19,9 @@ import jakarta.validation.Valid;
 public class EmpleadoController {
     @Autowired
     public EmpleadoService empleadoService;
+    
+    @Autowired
+    public DepartamentoService departamentoService;
 
     @GetMapping({ "/", "/list" })
     public String showList(Model model) {
@@ -28,6 +33,7 @@ public class EmpleadoController {
     public String showNew(Model model) {
         // el commandobject del formulario es una instancia de empleado vacia
         model.addAttribute("empleadoForm", new Empleado());
+        model.addAttribute("departamento", departamentoService.obtenerTodos());
         return "FormNew";
     }
 

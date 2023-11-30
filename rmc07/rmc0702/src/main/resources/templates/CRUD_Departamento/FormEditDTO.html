@@ -26,17 +26,7 @@
       <label
         >Nombre: <input type="text" id="nombre" th:field="*{nombre}" /></label
       ><br />
-      <div th:classappend="${#fields.hasErrors('email')} ? 'cssError'">
-        <label
-          >Email:<input type="text" id="email" th:field="*{email}" />
-          <span
-            th:if="${#fields.hasErrors('email')}"
-            th:errors="*{email}"
-            class="cssError"
-            >texto error</span
-          >
-        </label>
-      </div>
+      <div th:classappend="${#fields.hasErrors('email')} ? 'cssError'"></div>
       <input type="submit" value="Enviar" />
     </form>
     <a th:href="@{/}">Inicio</a><br />
