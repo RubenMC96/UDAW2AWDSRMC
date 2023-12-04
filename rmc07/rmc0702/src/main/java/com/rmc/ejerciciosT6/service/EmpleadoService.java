@@ -17,6 +17,8 @@ public interface EmpleadoService {
 
     public void borrar(Long id);
 
+    public List<Empleado> obtenerPorDto(Long id);
+
     List<Empleado> obtenerEmpleadosSalarioMayor (double salario);
     List<Empleado> obtenerEmpleadoSalarioMayorMedia();
 }

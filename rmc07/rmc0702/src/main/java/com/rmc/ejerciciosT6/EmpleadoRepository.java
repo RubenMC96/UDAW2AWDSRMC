@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import com.rmc.ejerciciosT6.domain.Departamento;
 import com.rmc.ejerciciosT6.domain.Empleado;
 
 
@@ -14,6 +15,7 @@ public List<Empleado> findByNombre (String nombre);
 public List<Empleado> findByNombreAndEmail (String nombre, String email);
 public List<Empleado> findByNombreEquals (String nombre);
 public List<Empleado> findBySalarioGreaterThanEqualOrderBySalario (double salario);
+public List<Empleado> findByDepartamento (Departamento departamento);
 @Query("select e from Empleado e " +
 "where e.salario > (select avg (e2.salario) from Empleado e2)")
 List <Empleado> obtenerEmpleadoSalarioMayorMedia();

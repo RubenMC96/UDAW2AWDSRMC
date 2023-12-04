@@ -6,17 +6,16 @@
     <title>Lista departamentos</title>
   </head>
   <body>
-    <h1 th:text="${listaDepartamentos}">Lista departamentos</h1>
+    <h1>Lista departamentos</h1>
     <table>
       <thead>
         <th>ID</th>
         <th>Nombre</th>
-        <th>Email</th>
       </thead>
       <tbody>
-        <tr th:each="empleado : ${listaEmpleados}">
-          <td th:text="${empleado.id}">Id</td>
-          <td th:text="${empleado.nombre}">nombre</td>
+        <tr th:each="departamento : ${listaDepartamentos}">
+          <td th:text="${departamento.id}">Id</td>
+          <td th:text="${departamento.nombre}">nombre</td>
           <td>
             <a th:href="@{/departamento/editar/{id}(id=${departamento.id})}"
               >Editar</a
@@ -30,6 +29,6 @@
         </tr>
       </tbody>
     </table>
-    <a th:href="/departamento/nuevo">Nuevo departamento</a>
+    <a th:href="@{/departamento/nuevo}">Nuevo departamento</a>
   </body>
 </html>

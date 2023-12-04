@@ -25,17 +25,15 @@ public class DepartamentoController {
 
     @GetMapping({ "/", "/list" })
     public String showListDTO(Model model) {
-        model.addAttribute("listaEmpleados", departamentoService.obtenerTodos());
         model.addAttribute("listaDepartamentos", departamentoService.obtenerTodos());
-        model.addAttribute("deptoSeleccionado", 0);
-        return "departementoView";
+        return "CRUD_Departamento/departamentoView";
     }
 
     @GetMapping("/nuevo")
     public String showNewDTO(Model model) {
         // el commandobject del formulario es una instancia de empleado vacia
         model.addAttribute("departamentoForm", new Departamento());
-        return "FormNewDTO";
+        return "CRUD_Departamento/FormNewDTO";
     }
 
     @PostMapping("/nuevo/submit")
@@ -53,8 +51,8 @@ public class DepartamentoController {
         Departamento departamento = departamentoService.obtenerPorId(id);
         // el commandobject del formulario es el empleado con el id solicitado
         if (departamento != null) {
-            model.addAttribute("departementoForm", departamento);
-            return "FormEditDTO";
+            model.addAttribute("departamentoForm", departamento);
+            return "CRUD_Departamento/FormEditDTO";
         }
         // si no lo encuentra vuelve a la página de inicio.
         return "redirect:/departamento/list";

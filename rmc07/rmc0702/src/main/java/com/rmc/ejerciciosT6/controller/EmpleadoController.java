@@ -26,6 +26,8 @@ public class EmpleadoController {
     @GetMapping({ "/", "/list" })
     public String showList(Model model) {
         model.addAttribute("listaEmpleados", empleadoService.obtenerTodos());
+        model.addAttribute("listaDepartamentos", departamentoService.obtenerTodos());
+        model.addAttribute("deptoSeleccionado", 0);
         return "indexView";
     }
 
@@ -74,4 +76,14 @@ public class EmpleadoController {
         return "redirect:/list";
     }
 
+    @GetMapping("/porDepto/{dep}")
+    public String showPorDepartamento(@PathVariable long dep, Model model){
+    
+        model.addAttribute("listaEmpleados", empleadoService.obtenerPorDto(dep));
+        model.addAttribute("listaDepartamentos", departamentoService.obtenerTodos());
+        model.addAttribute("deptoSeleccionado", dep);
+        return "indexView";
+    }
+
+    
 }
