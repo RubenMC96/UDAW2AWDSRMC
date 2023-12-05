@@ -1,5 +1,8 @@
 package com.rmc.ejerciciosT6.domain;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -22,16 +25,16 @@ public class Empleado {
    
     @Id
     @GeneratedValue
-    @Min(value = 0)
         private Long id;
     @NotEmpty
         private String nombre;
     @Email(message = "Debe tener formato email valido")
         private String email;
-        private Double salario;
-        private boolean enActivo;
-        private Genero genero;
+    private Double salario;
+    private boolean enActivo;
+    private Genero genero;
 
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Departamento departamento;
 }

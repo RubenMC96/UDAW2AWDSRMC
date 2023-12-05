@@ -14,19 +14,11 @@
       th:action="@{/departamento/editar/submit}"
       th:object="${departamentoForm}"
     >
-      <label
-        >Id:<input
-          type="text"
-          readonly
-          id="id"
-          th:field="*{id}"
-          readonly
-        /> </label
+      <label>Id:<input type="text" id="id" th:field="*{id}" readonly /> </label
       ><br />
       <label
         >Nombre: <input type="text" id="nombre" th:field="*{nombre}" /></label
       ><br />
-      <div th:classappend="${#fields.hasErrors('email')} ? 'cssError'"></div>
       <input type="submit" value="Enviar" />
     </form>
     <a th:href="@{/}">Inicio</a><br />
