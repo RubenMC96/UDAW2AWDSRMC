@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.rmc</groupId>
-	<artifactId>rmc0702</artifactId>
+	<artifactId>rmc0702_02B</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>rmc0702</name>
+	<name>rmc0702_02B</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>
