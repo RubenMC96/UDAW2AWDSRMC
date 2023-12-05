@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Empleado CRUD</title>
+  </head>
+  <body>
+    <h1>Listado de empleados de la empresa</h1>
+
+    <select id="select" onChange="changeDepartamento();">
+      <option value="0">Todos</option>
+      <option
+        th:each="dep : ${listaDepartamentos}"
+        th:value="${dep.id}"
+        th:text="${dep.nombre}"
+        th:selected="${dep.id} == ${deptoSeleccionado} ? true : false"
+      ></option>
+    </select>
+    <script>
+      function changeDepartamento() {
+        const select = document.getElementById("select");
+        if (select.value == 0) window.location.href = "/";
+        else window.location.href = "/porDepto/" + select.value;
+      }
+    </script>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Email</th>
+          <th>Salario</th>
+          <th>Activo</th>
+          <th>Genero</th>
+          <th>Deartamento</th>
+          <th>Editar</th>
+          <th>Borrar</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr th:each="empleado : ${listaEmpleados}">
+          <td th:text="${empleado.id}"></td>
+          <td th:text="${empleado.nombre}"></td>
+          <td th:text="${empleado.email}"></td>
+          <td th:text="${empleado.salario}"></td>
+          <td th:text="${empleado.enActivo}"></td>
+          <td th:text="${empleado.genero}"></td>
+          <td th:text="${empleado.departamento.nombre}"></td>
+          <td><a th:href="@{/editar/{id}(id=${empleado.id})}">Editar</a></td>
+          <td><a th:href="@{/borrar/{id}(id=${empleado.id})}">Borrar</a></td>
+        </tr>
+      </tbody>
+    </table>
+    <a th:href="@{/}">Inicio</a><br />
+    <a th:href="@{/nuevo}">Nuevo empleado</a><br />
+    <a th:href="@{/departamento/}">Gestion de departamentos</a><br />
+  </body>
+</html>
