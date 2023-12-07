@@ -33,7 +33,7 @@ public class CategoriaController {
     public String showNewDTO(Model model) {
         // el commandobject del formulario es una instancia de empleado vacia
         model.addAttribute("categoriaForm", new Categoria());
-        return "CrudCategoria/FormNewDTO";
+        return "CrudCategoria/categoriaNew";
     }
 
     @PostMapping("/nuevo/submit")
@@ -52,7 +52,7 @@ public class CategoriaController {
         // el commandobject del formulario es el empleado con el id solicitado
         if (categoria != null) {
             model.addAttribute("categoriaForm", categoria);
-            return "CrudCategoria/FormEditDTO";
+            return "CrudCategoria/categoriaEdit";
         }
         // si no lo encuentra vuelve a la página de inicio.
         return "redirect:/categoria/list";

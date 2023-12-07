@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lista categorias</title>
+  </head>
+  <body>
+    <h1>Lista categorias</h1>
+    <table>
+      <thead>
+        <th>ID</th>
+        <th>Nombre</th>
+      </thead>
+      <tbody>
+        <tr th:each="categoria : ${listacategorias}">
+          <td th:text="${categoria.id}">Id</td>
+          <td th:text="${categoria.nombre}">nombre</td>
+          <td>
+            <a th:href="@{/categoria/editar/{id}(id=${categoria.id})}"
+              >Editar</a
+            >
+          </td>
+          <td>
+            <a th:href="@{/categoria/borrar/{id}(id=${categoria.id})}"
+              >Borrar</a
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <a th:href="@{/categoria/nuevo}">Nueva categoria</a>
+  </body>
+</html>
