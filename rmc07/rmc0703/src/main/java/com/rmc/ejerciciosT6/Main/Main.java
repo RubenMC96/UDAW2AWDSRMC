@@ -5,9 +5,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import com.rmc.ejerciciosT6.domain.Categoria;
 import com.rmc.ejerciciosT6.domain.Departamento;
 import com.rmc.ejerciciosT6.domain.Empleado;
 import com.rmc.ejerciciosT6.domain.Genero;
+import com.rmc.ejerciciosT6.service.CategoriaService;
 import com.rmc.ejerciciosT6.service.DepartamentoService;
 import com.rmc.ejerciciosT6.service.EmpleadoService;
 
@@ -19,7 +21,7 @@ public class Main {
 	}
 	@Bean
 
-		CommandLineRunner initData(EmpleadoService empleadoService, DepartamentoService departamentosService) {
+		CommandLineRunner initData(EmpleadoService empleadoService, DepartamentoService departamentosService, CategoriaService categoriaService) {
 			return args -> {
 
 				Departamento departamento1 = departamentosService.añadir(
@@ -27,6 +29,12 @@ public class Main {
 				);
 				Departamento departamento2 = departamentosService.añadir(
 					new Departamento(0L, "Diseño")
+				);
+				Categoria categoria1 = categoriaService.añadir(
+					new Categoria(0L, "Becario")
+				);
+				Categoria categoria2 = categoriaService.añadir(
+					new Categoria(0L, "Empleado")
 				);
 
 				empleadoService.añadir(
@@ -36,10 +44,11 @@ public class Main {
 							1000d, 
 							true,
 							Genero.MASCULINO,
-							departamento2));
+							departamento2,
+							categoria1));
 					
 				empleadoService.añadir(
-					new Empleado(0L, "ana", "ana@gmail.com", 2000d, true, Genero.FEMENINO, departamento1)
+					new Empleado(0L, "ana", "ana@gmail.com", 2000d, true, Genero.FEMENINO, departamento1, categoria2)
 					);
 			};
 		}

@@ -34,4 +34,14 @@ public class Categoria {
     @OneToMany(mappedBy = "categoria")
     @OnDelete(action= OnDeleteAction.CASCADE)
     private List<Empleado> empleados = new ArrayList<>();
+
+
+    public Categoria(Long id, String nombre){
+   
+    this.id = id;
+    this.nombre = nombre;
 }
+}
+
+
+
