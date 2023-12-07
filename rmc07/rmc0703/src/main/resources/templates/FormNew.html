@@ -62,6 +62,17 @@
         ></option>
       </select>
 
+      Categoria:<br />
+      <select name="list2" th:field="*{categoria}">
+        <option value="0">select option</option>
+        <!--opcion por defecto-->
+        <option
+          th:each="categoria:${listaCategorias}"
+          th:value="${categoria.id}"
+          th:text="${categoria.nombre}"
+        ></option>
+      </select>
+
       <input type="submit" value="Enviar" />
     </form>
     <a th:href="@{/}">Inicio</a><br />

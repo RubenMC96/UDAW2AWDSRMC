@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.rmc.ejerciciosT6.domain.Empleado;
+import com.rmc.ejerciciosT6.service.CategoriaService;
 import com.rmc.ejerciciosT6.service.DepartamentoService;
 import com.rmc.ejerciciosT6.service.EmpleadoService;
 
@@ -23,10 +24,14 @@ public class EmpleadoController {
     @Autowired
     public DepartamentoService departamentoService;
 
+    @Autowired
+    public CategoriaService categoriaService;
+
     @GetMapping({ "/", "/list" })
     public String showList(Model model) {
         model.addAttribute("listaEmpleados", empleadoService.obtenerTodos());
         model.addAttribute("listaDepartamentos", departamentoService.obtenerTodos());
+        model.addAttribute("listaCategorias", categoriaService.obtenerTodos());
         model.addAttribute("deptoSeleccionado", 0);
         return "indexView";
     }
@@ -36,6 +41,7 @@ public class EmpleadoController {
         // el commandobject del formulario es una instancia de empleado vacia
         model.addAttribute("empleadoForm", new Empleado());
         model.addAttribute("departamento", departamentoService.obtenerTodos());
+        model.addAttribute("categoria", categoriaService.obtenerTodos());
         return "FormNew";
     }
 

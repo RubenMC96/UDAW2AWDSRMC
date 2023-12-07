@@ -73,8 +73,7 @@ public class EmpleadoController {
     @GetMapping("/listado1/{salario}")
     public String showListado1(@PathVariable Double salario, Model model) {
         List<Empleado> empleados = empleadoService.obtenerEmpleadosSalarioMayor (salario);
-        model.addAttribute("tituloListado", "Empleados salario mayor que" +
-        salario.toString());
+        model.addAttribute("tituloListado", "Empleados salario mayor que" + salario.toString());
         model.addAttribute("listaEmpleados", empleados);
         return "listadosView";
     }

@@ -4,8 +4,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.rmc.ejerciciosT6.EmpleadoRepository;
 import com.rmc.ejerciciosT6.domain.Empleado;
+import com.rmc.ejerciciosT6.repositories.EmpleadoRepository;
 
 
 @Service
@@ -38,6 +38,6 @@ public class EmpleadoServiceImp implements EmpleadoService{
         return repositorio.findBySalarioGreaterThanEqualOrderBySalario(salario);
     }
     public List<Empleado> obtenerEmpleadoSalarioMayorMedia() {
-        return repositorio.obtenerEmpleadoSalarioMayorMedia();
+        return repositorio.getEmployeWhereSalaryUPAvg();
     }
 }
