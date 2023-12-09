@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lista departamentos</title>
+  </head>
+  <body>
+    <h1>Lista departamentos</h1>
+    <table>
+      <thead>
+        <th>ID</th>
+        <th>Nombre</th>
+      </thead>
+      <tbody>
+        <tr th:each="departamento : ${listaDepartamentos}">
+          <td th:text="${departamento.id}">Id</td>
+          <td th:text="${departamento.nombre}">nombre</td>
+          <td>
+            <a th:href="@{/departamento/editar/{id}(id=${departamento.id})}"
+              >Editar</a
+            >
+          </td>
+          <td>
+            <a th:href="@{/departamento/borrar/{id}(id=${departamento.id})}"
+              >Borrar</a
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <a th:href="@{/departamento/nuevo}">Nuevo departamento</a>
+  </body>
+</html>
