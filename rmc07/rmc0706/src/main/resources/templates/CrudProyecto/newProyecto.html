@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Nuevo Proyecto</h1>
+<form method="post" action="#"
+th:action="@{/proy/new/submit}" th:object="${proyectoForm}">
+<label>Id:-solo lectura-<input type="text" readonly id="id"
+th:field="*{id}" /> </label><br/>
+<label>Nombre:<input type="text" id="nombre"
+th:field="*{nombre}" /></label><br/>
+<input type="submit" value="Enviar" />
+</form>
+<a th:href="@{/proy/}">Lista de proyectos</a><br/>
+</body>
+</html>
