@@ -50,4 +50,8 @@ public class CategoriaServiceImp implements CategoriaService{
         return catRepo.findByCategoria(cat);
     }
 
+    public Categoria obtenerPorNombre(String nombre){
+
+        return catRepo.findByNombre(nombre);
+    }
 }

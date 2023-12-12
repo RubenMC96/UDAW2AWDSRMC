@@ -22,9 +22,9 @@ public class AppApplication {
 	public CommandLineRunner initData(CategoriaService categoriaService, ProductoService productoService) {
 
 		return args -> {
-			categoriaService.añadir(new Categoria(1L, "Ordenadores"));
-			categoriaService.añadir(new Categoria(2L, "Bombillas"));
-			productoService.añadir(new Producto(1L,"HP invictus",true,TipoIva.NORMAL,1000D,1L));
+			categoriaService.añadir(new Categoria(0L, "Ordenadores"));
+			categoriaService.añadir(new Categoria(0L, "Bombillas"));
+			productoService.añadir(new Producto(1L,"HP invictus",true,TipoIva.NORMAL,1000D,categoriaService.obtenerPorNombre("Ordenadores")));
 		};
 	}
 

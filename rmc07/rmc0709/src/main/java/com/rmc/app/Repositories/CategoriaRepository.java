@@ -9,4 +9,6 @@ import com.rmc.app.domain.Categoria;
 public interface CategoriaRepository extends JpaRepository<Categoria, Long>{
 
    public List <Categoria> findByCategoria (Categoria categoria); 
+
+   public Categoria findByNombre(String nombre);
 } 
