@@ -3,47 +3,51 @@ package com.rmc.app.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.rmc.app.Repositories.CategoriaRepository;
+import com.rmc.app.Repositories.ProductoRepository;
+import com.rmc.app.domain.Categoria;
 import com.rmc.app.domain.Producto;
 
 @Service
 public class ProductoServiceImp implements ProductoService{
-    private List<Producto> listaProductos = new ArrayList<>();
+
+    @Autowired
+    ProductoRepository proRepo;
     
+    @Autowired
+    CategoriaRepository catRepo;
 
     public Producto añadir(Producto producto) {
-        listaProductos.add(producto);
-        return producto; // podría no devolver nada, o boolean, etc.
+        
+        return proRepo.save(producto); // podría no devolver nada, o boolean, etc.
     }
     public List<Producto> obteberLista() {
-        return listaProductos;
+        return proRepo.findAll();
     }
     public Producto obtenerPorId(long id) {
-        for (Producto producto : listaProductos)
-            if (producto.getId() == id)
-                return producto;
-        return null; // debería lanzar excepción si no encontrado
+        
+        Producto producto = proRepo.findById(id).orElse(null); // debería lanzar excepción si no encontrado
+        if(producto == null) return null;
+        return producto;
+
     }
     public Producto editar(Producto producto) {
-        int pos = listaProductos.indexOf(producto);
-        if (pos == -1)
-            return null; // debería lanzar excepción si no encontrado
-        listaProductos.set(pos, producto); // si lo encuentra, lo sustituye
-        return producto;
+        return proRepo.save(producto);
     }
     public void borrar(Long id) {
-        Producto producto = this.obtenerPorId(id);
-        if (producto != null) {
-            listaProductos.remove(producto); // podría devolver boolean
-        }
+        Producto producto = proRepo.findById(id).orElse(null); // debería lanzar excepción si no encontrado
+        if(producto != null)
+        proRepo.delete(producto);
     }
     public List<Producto> findByCategory(Long idCat){
-        List<Producto> listaProductosCat = new ArrayList<>();
-        for (Producto producto : listaProductos){
-            if (producto.getIdCategoria() == idCat)
-                listaProductosCat.add(producto);
-        }
-        return listaProductosCat;
+        
+        Categoria categoria = catRepo.findById(idCat).orElse(null);
+
+        if(categoria == null) return null;
+
+        return proRepo.findByCategoria(categoria);
     }
 }
