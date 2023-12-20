@@ -13,6 +13,7 @@ import com.rmc.ejerciciosT6.domain.Proyecto;
 import com.rmc.ejerciciosT6.service.CategoriaService;
 import com.rmc.ejerciciosT6.service.DepartamentoService;
 import com.rmc.ejerciciosT6.service.EmpleadoService;
+import com.rmc.ejerciciosT6.service.ProyectoService;
 
 @SpringBootApplication
 public class Main {
@@ -22,7 +23,7 @@ public class Main {
 	}
 	@Bean
 
-		CommandLineRunner initData(EmpleadoService empleadoService, DepartamentoService departamentosService, CategoriaService categoriaService) {
+		CommandLineRunner initData(EmpleadoService empleadoService, DepartamentoService departamentosService, CategoriaService categoriaService, ProyectoService proyectoService) {
 			return args -> {
 
 				Departamento departamento1 = departamentosService.añadir(
@@ -53,8 +54,8 @@ public class Main {
 					);
 
 
-					proyectoService.añadir(new Proyecto(0L,"Nueva normativa UE",null));
-proyectoService.añadir(new Proyecto(0L,"Mejora Web actual",null));
+					proyectoService.añadir(new Proyecto(0L,"Nueva normativa UE"));
+proyectoService.añadir(new Proyecto(0L,"Mejora Web actual"));
 			};
 		}
 

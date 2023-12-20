@@ -8,18 +8,17 @@
   </head>
   <body>
     <h1>Listado de empleados de la empresa</h1>
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Nombre</th>
-          <th>Email</th>
-          <th>Salario</th>
-          <th>Activo</th>
-          <th>Genero</th>
-          <th>Editar</th>
-          <th>Borrar</th>
-        </tr>
+    <select id="select" onChange="changeDepartamento();">
+      <option value="0">Todos</option>
+      <option th:each="dep : ${listaDepartamentos}"
+      th:value="${dep.id}" th:text="${dep.nombre}"
+      th:selected="${dep.id} == ${deptoSeleccionado} ? true : false">
+      </option>
+      </select>
+      <table>
+      <thead><tr>
+      <th>ID</th><th>Nombre</th><th>Email</th><th>Salario</th>
+      <th>Activo</th><th>Genero</th><th>Depto</th><th>Editar</th><th>Borrar</th></tr>
       </thead>
 
       <tbody>
@@ -39,6 +38,16 @@
     </table>
     <a th:href="@{/}">Inicio</a><br />
     <a th:href="@{/nuevo}">Nuevo empleado</a><br />
+    <a th:href="@{/new}">Nuevo empleado</a><br/>
+    <script>
+    function changeDepartamento(){
+    const select = document.getElementById("select");
+    if (select.value == 0) window.location.href = "/";
+    else window.location.href = "/porDepto/"+select.value;
+    }
+    </script>
+
+  <a th:href="@{/depto/}">Gestión de departamentos</a><br/>
 
     <a th:href="@{/listado1/1000}">Listado 1 (salario > 1000 euros)</a><br/>
     <a th:href="@{/listado2}">Listado 2 (salario > media)</a><br/>

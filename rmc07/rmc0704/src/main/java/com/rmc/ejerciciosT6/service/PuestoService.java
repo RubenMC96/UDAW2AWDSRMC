@@ -16,9 +16,9 @@ public interface PuestoService {
 
     public Puesto obtenerPorId(long id);
 
-    public void borrar(Puesto puesto);
+    public void borrar(long id);
 
-    public List<Proyecto> obtenerPorEmpleado (Empleado empleado);
-    public List<Proyecto> obtenerPorProyeto (Proyecto proyecto);
-    public List<Proyecto> obtenerPorPuesto (Empleado empleado, Proyecto proyecto);
+    public List<Puesto> obtenerPorEmpleado (Empleado empleado);
+    public List<Puesto> obtenerPorProyeto (Proyecto proyecto);
+    public Puesto obtenerPorEmpleadoAndProyecto (Empleado empleado, Proyecto proyecto);
 }

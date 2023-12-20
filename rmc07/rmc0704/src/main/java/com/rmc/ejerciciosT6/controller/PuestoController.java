@@ -31,6 +31,10 @@ public class PuestoController {
     @Autowired
 
     public ProyectoService proyectoService;
+
+    @Autowired
+
+    public PuestoService puestoService;
     
 
 
@@ -39,7 +43,7 @@ public class PuestoController {
 
 
         Empleado e = empleadoService.obtenerPorId(id);
-        model.addAttribute("listaPuesto", e
+        model.addAttribute("listaPuesto",
         puestoService.obtenerPorEmpleado(e));
 
         model.addAttribute("empleado", empleadoService.obtenerPorId(id));
@@ -53,8 +57,7 @@ public class PuestoController {
 @GetMapping("/pro/{id}") // lista de empleados de un proyecto
 public String showEmplbyProyect(@PathVariable long id, Model model) {
 Proyecto p = proyectoService.obtenerPorId(id);
-model.addAttribute("listaEmpleadoProyecto",
-puestoService.obtenerPorProyecto(p));
+model.addAttribute("listaEmpleadoProyecto",puestoService.obtenerPorProyecto(p));
 model.addAttribute("proyecto", proyectoService.obtenerPorId(id));
 return "puesto/proListView";
 }

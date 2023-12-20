@@ -17,6 +17,7 @@ public interface  PuestoRepository extends JpaRepository<Puesto, Long> {
 public List<Puesto> findByEmpleado (Empleado empleado);
 public List<Puesto> findByProyecto (Proyecto proyecto);
 public List<Proyecto> findBProyecto(Empleado emp, Proyecto proy);
+public Puesto obtenerPorEmpleadoAndProyecto (Empleado empleado, Proyecto proyecto);
 
 
 }
