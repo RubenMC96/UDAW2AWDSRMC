@@ -43,11 +43,11 @@ public class CategoriaServiceImp implements CategoriaService{
         
     }
 
-    public List<Categoria> obtenerPorCategoria(Long id){
+    public Categoria obtenerPorCategoria(Long id){
         Categoria cat=catRepo.findById(id).orElse(null);
         if(cat == null) return null;
         
-        return catRepo.findByCategoria(cat);
+        return cat;
     }
 
     public Categoria obtenerPorNombre(String nombre){

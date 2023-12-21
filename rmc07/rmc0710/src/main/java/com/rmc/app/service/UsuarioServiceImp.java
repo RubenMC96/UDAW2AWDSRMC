@@ -43,11 +43,11 @@ public class UsuarioServiceImp implements UsuarioService{
         
     }
 
-    public List<Usuario> obtenerPorUsuario(Long id){
+    public Usuario obtenerPorUsuario(Long id){
         Usuario usu=usuRepo.findById(id).orElse(null);
         if(usu == null) return null;
         
-        return usuRepo.findByUsuario(usu);
+        return usu;
     }
 
     public Usuario obtenerPorNombre(String nombre){

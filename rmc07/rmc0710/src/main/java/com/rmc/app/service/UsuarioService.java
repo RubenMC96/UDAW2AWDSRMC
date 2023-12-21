@@ -14,7 +14,7 @@ public interface UsuarioService {
     public Usuario obtenerPorId(long id);
     public Usuario editar(Usuario usuario);
     public void borrar(Long id);
-    public List<Usuario> obtenerPorUsuario(Long id);
+    public Usuario obtenerPorUsuario(Long id);
     public Usuario obtenerPorNombre(String nombre);
 
     

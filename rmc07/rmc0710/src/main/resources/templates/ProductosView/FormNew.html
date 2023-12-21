@@ -13,38 +13,39 @@
       action="#"
       th:action="@{/producto/nuevo/submit}"
       th:object="${productoForm}"
-        >
-        <label>Id:<input type="text" id="id" th:field="*{id}" /> </label><br/>
-        <label
-            >Nombre: <input type="text" id="nombre" th:field="*{nombre}" /></label
-        ><br />
-        <label
-            >En oferta:<input
-              type="checkbox"
-              id="oferta"
-              th:field="*{oferta}" />
-        </label
-        ><br />
-        Tipo Iva:<br />
-        <div th:each="iva : ${T(com.rmc.app.domain.TipoIva).values()}">
-            <input
-              type="radio"
-              name="button1"
-              th:value="${iva}"
-              th:text="${iva}"
-              th:field="*{tipoIva}"
-            />
-        </div>
-        <label> 
-          Precio:<input type="text" th:field="*{precio}"/>
-        </label><br/>
-        <label>Categoria
-          <select name="categoria" th:field="*{idCategoria}">
-            <option th:each="cat : ${listaCategorias}"
-              th:value="${cat.id}" th:text="${cat.nombre}">
-            </option>
-          </select>
-        </label><br/>
+    >
+      <label>Id:<input type="text" id="id" th:field="*{id}" /> </label><br />
+      <label
+        >Nombre: <input type="text" id="nombre" th:field="*{nombre}" /></label
+      ><br />
+      <label
+        >En oferta:<input
+          type="checkbox"
+          id="oferta"
+          th:field="*{oferta}"
+        /> </label
+      ><br />
+      Tipo Iva:<br />
+      <div th:each="iva : ${T(com.rmc.app.domain.TipoIva).values()}">
+        <input
+          type="radio"
+          name="button1"
+          th:value="${iva}"
+          th:text="${iva}"
+          th:field="*{tipoIva}"
+        />
+      </div>
+      <label> Precio:<input type="text" th:field="*{precio}" /> </label><br />
+      <label
+        >Categoria
+        <select name="categoria" th:field="*{categoria}">
+          <option
+            th:each="cat : ${listaCategorias}"
+            th:value="${cat.id}"
+            th:text="${cat.nombre}"
+          ></option>
+        </select> </label
+      ><br />
       <input type="submit" value="Enviar" />
     </form>
     <a th:href="@{/producto/}">Inicio</a><br />

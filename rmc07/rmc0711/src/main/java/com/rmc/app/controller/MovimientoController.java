@@ -26,7 +26,7 @@ public class MovimientoController {
     public MovimientoService movimientoService;
     @Autowired
     public CuentaService cuentaService;
-
+/*Modificar el /new*/
 
     @GetMapping({"/{iban}"})
     public String showMovCuenta(@PathVariable String iban ,Model model){

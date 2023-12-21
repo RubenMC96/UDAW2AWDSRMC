@@ -8,5 +8,5 @@ import com.rmc.app.domain.Cuenta;
 
 public interface CuentaRepository extends JpaRepository<Cuenta, String>{
 
-   public List <Cuenta> findTopBySaldoOrderBySaldoDesc(); 
+   public List <Cuenta> findTopByOrderBySaldo(); 
 } 

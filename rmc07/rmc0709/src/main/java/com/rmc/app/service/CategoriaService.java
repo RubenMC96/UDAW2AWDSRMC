@@ -14,7 +14,7 @@ public interface CategoriaService {
     public Categoria obtenerPorId(long id);
     public Categoria editar(Categoria categoria);
     public void borrar(Long id);
-    public List<Categoria> obtenerPorCategoria(Long id);
+    public Categoria obtenerPorCategoria(Long id);
     public Categoria obtenerPorNombre(String nombre);
 
     
