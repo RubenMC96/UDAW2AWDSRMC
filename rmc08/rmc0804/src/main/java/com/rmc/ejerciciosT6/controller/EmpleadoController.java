@@ -44,7 +44,13 @@ public class EmpleadoController {
         
         try{
             List<Empleado> listaEmpleados = empleadoService.obtenerTodos(); 
-            return ResponseEntity.ok(listaEmpleados);
+            List<EmpleadoDTO> listaEmpleadoDTOs = new ArrayList<>();
+            
+            for (Empleado e : listaEmpleados) {
+                EmpleadoDTO empleadoDTO = modelMapper.map(e, EmpleadoDTO.class); 
+                  listaEmpleadoDTOs.add(empleadoDTO);
+            }
+            return ResponseEntity.ok(listaEmpleadoDTOs);
         }
         catch(EmptyListEmpleadosException e){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
@@ -56,8 +62,8 @@ public class EmpleadoController {
 
         try{
             Empleado empleado = empleadoService.obtenerPorId(id);
-            
-            return ResponseEntity.ok(empleado);
+            EmpleadoDTO empleadoDTO = modelMapper.map(empleado, EmpleadoDTO.class); 
+            return ResponseEntity.ok(empleadoDTO);
         }
         catch(EmpleadoNotFoundException e){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());

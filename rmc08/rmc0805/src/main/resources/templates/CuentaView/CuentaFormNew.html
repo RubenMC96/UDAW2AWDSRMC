@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="/src/main/java/com/rmc/ejerciciosT6/controller/EmpleadoController.java"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Nueva cuenta</h1>
+    <form
+      method="post"
+      action="#"
+      th:action="@{/new/submit}"
+      th:object="${cuentaForm}"
+        >
+        <label>IBAN:<input type="text" id="iban" th:field="*{iban}" /> </label><br/>
+        <label
+            >Saldo: <input type="text" id="saldo" th:field="*{saldo}" /></label
+        ><br />
+        <input type="submit" value="Enviar" />
+    </form>
+  </body>
+</html>

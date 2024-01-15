@@ -54,10 +54,11 @@ public class EmpleadoController {
     public ResponseEntity<?> getOnElement(@PathVariable Long id) {
 
         Empleado empleado = empleadoService.obtenerPorId(id);
-        if(empleado == null)
+        EmpleadoDTO empleadoDTO = modelMapper.map(empleado, EmpleadoDTO.class);
+        if(empleadoDTO == null)
             return ResponseEntity.notFound().build();
         else
-            return ResponseEntity.ok(empleado);
+            return ResponseEntity.ok(empleadoDTO);
     }
 
 
