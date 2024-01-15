@@ -13,5 +13,6 @@ public interface CuentaService {
     public void borrar(String iban);
     public List<Cuenta> obtenerTodos();
     public List <Cuenta> obtenerCuentaMaxSaldo();
+    public Cuenta obtenerPorId(String iban);
     
 }

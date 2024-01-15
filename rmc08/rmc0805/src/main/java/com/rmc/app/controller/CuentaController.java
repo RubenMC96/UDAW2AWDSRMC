@@ -2,15 +2,22 @@ package com.rmc.app.controller;
 
 
 
+import java.util.List;
+
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
+import com.rmc.app.DTO.NuevaCuentaDTO;
+import com.rmc.app.Exception.EmptyListCuentaException;
 import com.rmc.app.domain.Cuenta;
 import com.rmc.app.service.CuentaService;
 import com.rmc.app.service.MovimientoService;
@@ -20,39 +27,46 @@ import jakarta.validation.Valid;
 
 
 
-@Controller
+@RestController
 public class CuentaController {
 
     @Autowired
     public CuentaService cuentaService;
     @Autowired
     public MovimientoService movimientoService;
+    @Autowired
+    public ModelMapper modelMapper;
 
-        @GetMapping({"/"})
-        public String showList(Model model){
-            model.addAttribute("listacuentas", cuentaService.obtenerTodos());
-            model.addAttribute("cuentaMaxSaldo", cuentaService.obtenerCuentaMaxSaldo());
-            return "CuentaView/ListCuentaView";
+        @GetMapping({"/cuenta"})
+        public ResponseEntity<?> showList(){
+
+            try{
+                List<Cuenta>listaCuentas = cuentaService.obtenerTodos();
+            
+                return ResponseEntity.ok(listaCuentas);
+            }
+            catch(EmptyListCuentaException c){
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, c.getMessage());
+            }
+            // model.addAttribute("listacuentas", );
+            // model.addAttribute("cuentaMaxSaldo", cuentaService.obtenerCuentaMaxSaldo());
+            // return "CuentaView/ListCuentaView";
+           /*Preguntar como devuelvo dos datos (lista cuenta y Max Saldo) */
+
         }
-        @GetMapping("/new")
-        public String showNuevo(Model model){
-            model.addAttribute("cuentaForm", new Cuenta());
-            return "CuentaView/CuentaFormNew";
-        }
-        @PostMapping("/new/submit")
-        public String showNuevoSubmit (
-            @Valid @ModelAttribute("cuentaForm") Cuenta nuevaCuenta,
-            BindingResult bindingResult){
-                if(bindingResult.hasErrors())
-                    return "redirect:/cuenta/new";
-                cuentaService.añadir(nuevaCuenta);
-                    return "redirect:/";
+        @PostMapping("/cuenta")
+        public ResponseEntity<?> showNuevo(@Valid @RequestBody NuevaCuentaDTO nuevaCuentaDTO){
+            Cuenta cuenta = new Cuenta(
+                nuevaCuentaDTO.getIban(),
+                null);
+            Cuenta cuentaSave = cuentaService.añadir(cuenta);
+            return ResponseEntity.status(HttpStatus.CREATED).body(cuentaSave);
         }
 
-        @GetMapping("/delete/{iban}")
-        public String showDelete(@PathVariable String iban) {
+        @DeleteMapping("/cuenta/{iban}")
+        public ResponseEntity<?> showDelete(@PathVariable String iban) {
             cuentaService.borrar(iban);
-            return "redirect:/";
+            return ResponseEntity.noContent().build();
             
         }
 

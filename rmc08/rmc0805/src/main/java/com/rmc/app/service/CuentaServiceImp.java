@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.rmc.app.Exception.CuentaNotFoundException;
+import com.rmc.app.Exception.EmptyListCuentaException;
 import com.rmc.app.Repositories.CuentaRepository;
 import com.rmc.app.domain.Cuenta;
 
@@ -25,10 +27,20 @@ public class CuentaServiceImp implements CuentaService{
         }
     }
     public List<Cuenta> obtenerTodos(){
-        return cuentaRepo.findAll();
+        List<Cuenta> lista = cuentaRepo.findAll();
+        if(lista.isEmpty()){
+            throw new EmptyListCuentaException();
+        }
+        return lista;
     }
     public List <Cuenta> obtenerCuentaMaxSaldo(){
         return cuentaRepo.findTopByOrderBySaldo();
     }
-    
+    public Cuenta obtenerPorId(String iban){
+        Cuenta cuenta = cuentaRepo.findById(iban).orElse(null);
+        if(cuenta == null){
+            throw new CuentaNotFoundException(null);
+        }
+        return cuenta;
+    }
 }
