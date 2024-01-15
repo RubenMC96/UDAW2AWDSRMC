@@ -4,6 +4,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.rmc.ejerciciosT6.Exception.DepartamentoNotFoundException;
+import com.rmc.ejerciciosT6.Exception.EmptyListDepartamentosException;
 import com.rmc.ejerciciosT6.domain.Departamento;
 import com.rmc.ejerciciosT6.repositories.DepartamentoRepository;
 
@@ -19,11 +21,21 @@ public class DepartamentoServiceImp implements DepartamentoService{
     }
 
     public List<Departamento> obtenerTodos() {
-        return repositorio.findAll();
+
+        List<Departamento> lista = repositorio.findAll();
+        
+        if(lista.isEmpty()) throw new EmptyListDepartamentosException();
+        
+        return lista;
     }
 
     public Departamento obtenerPorId(long id) {
-        return repositorio.findById(id).orElse(null);
+
+        Departamento departamento = repositorio.findById(id).orElse(null);
+        if(departamento == null){
+            throw new DepartamentoNotFoundException(null);
+        }
+        return departamento;
     }
 
     public Departamento editar(Departamento departamento) {

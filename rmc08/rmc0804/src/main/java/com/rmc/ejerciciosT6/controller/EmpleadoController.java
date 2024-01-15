@@ -6,6 +6,7 @@ import java.util.List;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.rmc.ejerciciosT6.DTO.EmpleadoDTO;
 import com.rmc.ejerciciosT6.DTO.EmpleadoNuevoDTO;
@@ -39,28 +41,28 @@ public class EmpleadoController {
     @GetMapping("/empleado")
     public ResponseEntity<?> getList() {
 
-        List<Empleado> listaEmpleados = empleadoService.obtenerTodos();
-        if(listaEmpleados.isEmpty()){
-            throw new EmptyListEmpleadosException();
-        }
-        else{
-            List<EmpleadoDTO> listaEmpleadoDTO = new ArrayList<>();
-            for(Empleado e : listaEmpleados){
-                listaEmpleadoDTO.add(modelMapper.map(e,EmpleadoDTO.class));
-                return ResponseEntity.ok(listaEmpleadoDTO);
-            }
-
+        
+        try{
+            List<Empleado> listaEmpleados = empleadoService.obtenerTodos(); 
             return ResponseEntity.ok(listaEmpleados);
         }
+        catch(EmptyListEmpleadosException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+        }
+
     }
     @GetMapping("/empleado/{id}")
     public ResponseEntity<?> getOnElement(@PathVariable Long id) {
 
-        Empleado empleado = empleadoService.obtenerPorId(id);
-        if(empleado == null)
-            throw new EmpleadoNotFoundException(id);
-        else
+        try{
+            Empleado empleado = empleadoService.obtenerPorId(id);
+            
             return ResponseEntity.ok(empleado);
+        }
+        catch(EmpleadoNotFoundException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+        }
+           
     }
 
 

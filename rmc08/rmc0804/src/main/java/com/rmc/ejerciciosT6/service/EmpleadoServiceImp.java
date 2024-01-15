@@ -4,6 +4,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.rmc.ejerciciosT6.Exception.EmpleadoNotFoundException;
+import com.rmc.ejerciciosT6.Exception.EmptyListEmpleadosException;
 import com.rmc.ejerciciosT6.domain.Empleado;
 import com.rmc.ejerciciosT6.repositories.EmpleadoRepository;
 
@@ -19,11 +21,21 @@ public class EmpleadoServiceImp implements EmpleadoService{
     }
 
     public List<Empleado> obtenerTodos() {
-        return repositorio.findAll();
+        List<Empleado> lista = repositorio.findAll();
+        
+        if(lista.isEmpty()) throw new EmptyListEmpleadosException();
+        
+        return lista;
+        
     }
 
     public Empleado obtenerPorId(long id) {
-        return repositorio.findById(id).orElse(null);
+
+        Empleado empleado = repositorio.findById(id).orElse(null);
+        if(empleado == null){
+            throw new EmpleadoNotFoundException(null);
+        }
+        return empleado;
     }
 
     public Empleado editar(Empleado empleado) {
