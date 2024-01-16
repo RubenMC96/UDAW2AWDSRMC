@@ -33,7 +33,7 @@ public class DepartamentoServiceImp implements DepartamentoService{
 
         Departamento departamento = repositorio.findById(id).orElse(null);
         if(departamento == null){
-            throw new DepartamentoNotFoundException(null);
+            throw new DepartamentoNotFoundException(id);
         }
         return departamento;
     }

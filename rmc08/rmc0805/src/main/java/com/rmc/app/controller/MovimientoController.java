@@ -56,7 +56,7 @@ public class MovimientoController {
         Movimiento movimiento = new Movimiento(null,
         nuevoMovimientoDTO.getImporte(),
         null,
-        cuentaService.obtenerPorId(movimientoService.getIban()));
+        cuentaService.obtenerPorId(nuevoMovimientoDTO.getIban()));
         Movimiento movimientoSave = movimientoService.añadir(movimiento);
         return ResponseEntity.status(HttpStatus.CREATED).body(movimientoSave);
     }

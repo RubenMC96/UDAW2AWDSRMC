@@ -1,6 +1,5 @@
 package com.rmc.ejerciciosT6.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
@@ -14,12 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
-
-import com.rmc.ejerciciosT6.DTO.EmpleadoDTO;
-import com.rmc.ejerciciosT6.DTO.EmpleadoNuevoDTO;
-import com.rmc.ejerciciosT6.Exception.EmpleadoNotFoundException;
-import com.rmc.ejerciciosT6.Exception.EmptyListEmpleadosException;
 import com.rmc.ejerciciosT6.domain.Empleado;
 import com.rmc.ejerciciosT6.service.DepartamentoService;
 import com.rmc.ejerciciosT6.service.EmpleadoService;
@@ -71,10 +64,10 @@ public class EmpleadoController {
     }
 
     @DeleteMapping("/empleado/{id}")
-    public Empleado delete(@PathVariable long id) {
+    public ResponseEntity<?> delete(@PathVariable long id) {
         
         empleadoService.obtenerPorId(id);
-        return empleadoService.borrar(id);       
+        return ResponseEntity.noContent().build();       
     }
 
     

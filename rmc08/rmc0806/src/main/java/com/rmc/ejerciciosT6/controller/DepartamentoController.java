@@ -22,7 +22,6 @@ import com.rmc.ejerciciosT6.service.DepartamentoService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/departamento")
 public class DepartamentoController {
     
     @Autowired
@@ -50,11 +49,9 @@ public class DepartamentoController {
 
     @PutMapping("/departamento/{id}")
     public ResponseEntity<?> editFormDTO(@Valid @RequestBody Departamento editDepartamento, @PathVariable long id) {
-        Departamento departamento = departamentoService.obtenerPorId(id);
+        departamentoService.obtenerPorId(id);
         // el commandobject del formulario es el empleado con el id solicitado
-        if (departamento == null) {
-            throw new DepartamentoNotFoundException(id);
-        }
+       
         departamentoService.editar(editDepartamento);
         return ResponseEntity.ok(editDepartamento);
     }
@@ -62,14 +59,9 @@ public class DepartamentoController {
 
     @DeleteMapping("/borrar/{id}")
     public ResponseEntity<?> deleteDTO(@PathVariable long id) {
-        Departamento departamento = departamentoService.obtenerPorId(id);
+        departamentoService.obtenerPorId(id);
 
-        if(departamento == null){
-            throw new DepartamentoNotFoundException(id);
-        }
-        else{
             departamentoService.borrar(id);
         return ResponseEntity.noContent().build();
-        }
     }
 }
