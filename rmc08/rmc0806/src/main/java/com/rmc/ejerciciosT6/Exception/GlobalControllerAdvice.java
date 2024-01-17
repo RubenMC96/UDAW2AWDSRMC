@@ -2,7 +2,6 @@ package com.rmc.ejerciciosT6.Exception;
 
 import java.time.LocalDateTime;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -13,6 +12,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+import com.rmc.ejerciciosT6.domain.Departamento;
 
 @RestControllerAdvice
 
@@ -29,12 +30,25 @@ public class GlobalControllerAdvice extends ResponseEntityExceptionHandler {
         
         return new ResponseEntity<Object>(body,HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(DepartamentoNotFoundException.class)
+    public ResponseEntity<?> handleDepartamentoNotFound(DepartamentoNotFoundException d, WebRequest request){
+        ExceptionBody body = new ExceptionBody(LocalDateTime.now(),HttpStatus.NOT_FOUND, d.getMessage(),((ServletWebRequest)request).getRequest().getRequestURI());
+        
+        return new ResponseEntity<Object>(body,HttpStatus.NOT_FOUND);
+    }
+    @ExceptionHandler(EmptyListDepartamentosException.class)
+    public ResponseEntity<?> handleEmptyListDepartamentos(EmptyListDepartamentosException d, WebRequest request){
+        ExceptionBody body = new ExceptionBody(LocalDateTime.now(),HttpStatus.NOT_FOUND, d.getMessage(),((ServletWebRequest)request).getRequest().getRequestURI());
+        
+        return new ResponseEntity<Object>(body,HttpStatus.NOT_FOUND);
+    }
     @Override
     protected ResponseEntity<Object> handleExceptionInternal(
     Exception ex, @Nullable Object body, HttpHeaders headers, //(*)
     HttpStatusCode status, WebRequest request) {
-    ExcepcionBody myBody =
-    new ExcepcionBody(LocalDateTime.now(),
+        ExceptionBody myBody =
+    new ExceptionBody(LocalDateTime.now(),
     status, ex.getMessage(),
     ((ServletWebRequest) request).getRequest().getRequestURI());
     return ResponseEntity.status(status).headers(headers).body(myBody);

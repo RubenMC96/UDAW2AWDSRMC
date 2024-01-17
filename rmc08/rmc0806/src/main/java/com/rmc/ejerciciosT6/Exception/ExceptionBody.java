@@ -1,4 +1,4 @@
-package com.rmc.ejerciciosT6.domain;
+package com.rmc.ejerciciosT6.Exception;
 
 import java.time.LocalDateTime;
 
@@ -9,7 +9,7 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-class ExceptionBody {
+public class ExceptionBody {
     private LocalDateTime timestamp;
     private HttpStatusCode status;
     private String message;
