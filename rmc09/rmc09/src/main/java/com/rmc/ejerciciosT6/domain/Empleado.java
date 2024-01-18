@@ -28,5 +28,4 @@ public class Empleado {
         private Double salario;
         private boolean enActivo;
         private Genero genero;
-        private Departamento departamento;
 }
