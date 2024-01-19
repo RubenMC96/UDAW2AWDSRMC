@@ -10,9 +10,7 @@ import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import com.rmc.app.domain.Producto;
-import com.rmc.app.domain.Usuario;
-import com.rmc.app.domain.Valoracion;
+
 
 @RestController
 public class GlobalControllerAdvice extends ResponseEntityExceptionHandler {
