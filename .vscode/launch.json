@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-AppApplication<com.rmc-rmc0301>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.rmc.app.AppApplication",
+      "projectName": "com.rmc-rmc0301",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}
