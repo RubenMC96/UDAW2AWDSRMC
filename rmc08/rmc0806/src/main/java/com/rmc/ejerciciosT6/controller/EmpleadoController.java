@@ -67,6 +67,7 @@ public class EmpleadoController {
     public ResponseEntity<?> delete(@PathVariable long id) {
         
         empleadoService.obtenerPorId(id);
+        empleadoService.borrar(id);
         return ResponseEntity.noContent().build();       
     }
 
