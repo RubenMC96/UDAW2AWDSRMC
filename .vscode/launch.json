@@ -2,6 +2,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "DemoApplication",
+      "request": "launch",
+      "mainClass": "com.app.demo.DemoApplication",
+      "projectName": "demo"
+    },
+    {
+      "type": "java",
       "name": "Spring Boot-AppApplication<com.rmc-rmc0301>",
       "request": "launch",
       "cwd": "${workspaceFolder}",

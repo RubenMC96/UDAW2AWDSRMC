@@ -3,6 +3,7 @@ package com.app.demo.controller;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -43,7 +44,7 @@ public class CambioDataController {
         que le corresponde a cada moneda
         */
 
-        HashMap<String, String> codMoneda = new HashMap();
+        Map<String, String> codMoneda = new HashMap <>();
 
         codMoneda.put("Euro","EUR");
         codMoneda.put("libra esterlina","GBP");

@@ -6,26 +6,29 @@
     <title>Document</title>
   </head>
   <body>
-    <form
-      method="post"
-      action="#"
-      th:action="@{/convertir}"
-    >
-      <label for = "importe"
-        >Importe:
-        <input type="text" id="importe" name = "importe" /></label
+    <form method="post" action="#" th:action="@{/convertir}">
+      <label for="importe"
+        >Importe: <input type="text" id="importe" name="importe" /></label
       ><br />
 
       <label for="origen">Moneda Origen:</label>
       <select id="origen" name="origen">
-          <option th:each="moneda : ${monedas}" th:value="${moneda}" th:text="${moneda}"></option>
+        <option
+          th:each="moneda : ${monedas}"
+          th:value="${moneda}"
+          th:text="${moneda}"
+        ></option>
       </select>
-      <br>
+      <br />
       <label for="destino">Moneda Destino:</label>
       <select id="destino" name="destino">
-          <option th:each="moneda : ${monedas}" th:value="${moneda}" th:text="${moneda}"></option>
+        <option
+          th:each="moneda : ${monedas}"
+          th:value="${moneda}"
+          th:text="${moneda}"
+        ></option>
       </select>
-      <br>
+      <br />
 
       <input type="submit" value="Enviar" />
     </form>
