@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="/src/main/java/com/rmc/ejerciciosT6/controller/EmpleadoController.java"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Nuevo usuario</h1>
+    <form
+      method="post"
+      action="#"
+      th:action="@{/nuevo/submit}"
+      th:object="${usuarioForm}"
+        >
+        <label>Nombre:<input type="text" id="nombre" th:field="*{nombre}" /> </label><br/>
+        <label
+            >Contraseña: <input type="password" id="password" th:field="*{password}" minlength="4"/></label
+        ><br />
+        <label
+            >Rol: <select name="rol">
+                <option th:each="rol : ${Rol.values()}" 
+                    th:value="${valor}" th:text="${valor}"></option>
+            </select>
+            </label
+        ><br />
+        <input type="submit" value="Enviar" />
+    </form>
+  </body>
+</html>
