@@ -12,6 +12,5 @@ public interface CuentaService {
     public Cuenta añadir(Cuenta categoria);
     public void borrar(String iban);
     public List<Cuenta> obtenerTodos();
-    public List <Cuenta> obtenerCuentaMaxSaldo();
     
 }

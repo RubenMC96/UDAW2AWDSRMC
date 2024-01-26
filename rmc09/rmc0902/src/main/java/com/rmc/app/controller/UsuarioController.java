@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.rmc.app.domain.Cuenta;
+import com.rmc.app.domain.Rol;
 import com.rmc.app.domain.Usuario;
-import com.rmc.app.service.CuentaService;
-import com.rmc.app.service.MovimientoService;
+import com.rmc.app.service.UsuarioService;
 
 import jakarta.validation.Valid;
 
@@ -22,10 +22,11 @@ import jakarta.validation.Valid;
 
 
 @Controller
+@RequestMapping("/usuario")
 public class UsuarioController {
 
     @Autowired
-    public UsarioService usuarioService;
+    public UsuarioService usuarioService;
 
 
         @GetMapping({"/"})
@@ -36,6 +37,7 @@ public class UsuarioController {
         @GetMapping("/nuevo")
         public String showNuevo(Model model){
             model.addAttribute("usuarioForm", new Usuario());
+            model.addAttribute("Rol", Rol.values());
             return "UsuarioView/UsuarioFormNew";
         }
         @PostMapping("/nuevo/submit")
@@ -45,13 +47,13 @@ public class UsuarioController {
                 if(bindingResult.hasErrors())
                     return "redirect:/usuario/nuevo";
                 usuarioService.añadir(nuevoUsuario);
-                    return "redirect:/";
+                    return "redirect:/usuario/";
         }
 
-        @GetMapping("/borrar/{iban}")
-        public String showDelete(@PathVariable String iban) {
-            usuarioService.borrar(iban);
-            return "redirect:/";
+        @GetMapping("/borrar/{id}")
+        public String showDelete(@PathVariable Long id) {
+            usuarioService.borrar(id);
+            return "redirect:/usuario/";
             
         }
 

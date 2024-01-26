@@ -27,8 +27,5 @@ public class CuentaServiceImp implements CuentaService{
     public List<Cuenta> obtenerTodos(){
         return cuentaRepo.findAll();
     }
-    public List <Cuenta> obtenerCuentaMaxSaldo(){
-        return cuentaRepo.findTopByOrderBySaldo();
-    }
     
 }

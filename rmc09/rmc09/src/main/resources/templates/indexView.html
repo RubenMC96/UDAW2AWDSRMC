@@ -6,19 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Empleado CRUD</title>
   </head>
-  <body>
+  <br>
     <h1>Listado de empleados de la empresa</h1>
     <select id="select" onChange="changeDepartamento();">
       <option value="0">Todos</option>
-      <option th:each="dep : ${listaDepartamentos}"
-      th:value="${dep.id}" th:text="${dep.nombre}"
-      th:selected="${dep.id} == ${deptoSeleccionado} ? true : false">
-      </option>
-      </select>
-      <table>
-      <thead><tr>
-      <th>ID</th><th>Nombre</th><th>Email</th><th>Salario</th>
-      <th>Activo</th><th>Genero</th><th>Depto</th><th>Editar</th><th>Borrar</th></tr>
+      <option
+        th:each="dep : ${listaDepartamentos}"
+        th:value="${dep.id}"
+        th:text="${dep.nombre}"
+        th:selected="${dep.id} == ${deptoSeleccionado} ? true : false"
+      ></option>
+    </select>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Email</th>
+          <th>Salario</th>
+          <th>Activo</th>
+          <th>Genero</th>
+          <th>Depto</th>
+          <th>Editar</th>
+          <th>Borrar</th>
+        </tr>
       </thead>
 
       <tbody>
@@ -29,8 +40,7 @@
           <td th:text="${empleado.salario}">0</td>
           <td th:text="${empleado.enActivo}">bool</td>
           <td th:text="${empleado.genero}">genero</td>
-          <td th:text="${empleado.departamento.nombre}">Departamento</td>
-          
+
           <td><a th:href="@{/editar/{id}(id=${empleado.id})}">Editar</a></td>
           <td><a th:href="@{/borrar/{id}(id=${empleado.id})}">Borrar</a></td>
         </tr>
@@ -38,18 +48,27 @@
     </table>
     <a th:href="@{/}">Inicio</a><br />
     <a th:href="@{/nuevo}">Nuevo empleado</a><br />
-    <a th:href="@{/new}">Nuevo empleado</a><br/>
     <script>
-    function changeDepartamento(){
-    const select = document.getElementById("select");
-    if (select.value == 0) window.location.href = "/";
-    else window.location.href = "/porDepto/"+select.value;
-    }
+      function changeDepartamento() {
+        const select = document.getElementById("select");
+        if (select.value == 0) window.location.href = "/";
+        else window.location.href = "/porDepto/" + select.value;
+      }
     </script>
 
-  <a th:href="@{/depto/}">Gestión de departamentos</a><br/>
+    <a th:href="@{/depto/}">Gestión de departamentos</a><br />
 
-    <a th:href="@{/listado1/1000}">Listado 1 (salario > 1000 euros)</a><br/>
-    <a th:href="@{/listado2}">Listado 2 (salario > media)</a><br/>
+    <a th:href="@{/listado1/1000}">Listado 1 (salario > 1000 euros)</a><br />
+    <a th:href="@{/listado2}">Listado 2 (salario > media)</a><br />
+
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+
+
+  <a th:href="@{/login}">Login</a><br />
+  <a th:href="@{/logout}">Logout</a><br />
+
   </body>
 </html>

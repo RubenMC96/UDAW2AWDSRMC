@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.rmc.app.domain.Cuenta;
 import com.rmc.app.service.CuentaService;
@@ -21,6 +22,7 @@ import jakarta.validation.Valid;
 
 
 @Controller
+@RequestMapping("/cuenta")
 public class CuentaController {
 
     @Autowired
@@ -31,7 +33,6 @@ public class CuentaController {
         @GetMapping({"/"})
         public String showList(Model model){
             model.addAttribute("listacuentas", cuentaService.obtenerTodos());
-            model.addAttribute("cuentaMaxSaldo", cuentaService.obtenerCuentaMaxSaldo());
             return "CuentaView/ListCuentaView";
         }
         @GetMapping("/new")
@@ -46,13 +47,13 @@ public class CuentaController {
                 if(bindingResult.hasErrors())
                     return "redirect:/cuenta/new";
                 cuentaService.añadir(nuevaCuenta);
-                    return "redirect:/";
+                    return "redirect:/cuenta/";
         }
 
         @GetMapping("/delete/{iban}")
         public String showDelete(@PathVariable String iban) {
             cuentaService.borrar(iban);
-            return "redirect:/";
+            return "redirect:/cuenta/";
             
         }
 

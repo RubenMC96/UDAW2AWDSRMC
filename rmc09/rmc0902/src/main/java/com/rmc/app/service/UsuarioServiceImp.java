@@ -17,7 +17,7 @@ public class UsuarioServiceImp implements UsuarioService {
     public Usuario añadir(Usuario usuario){
         return usuarioRepository.save(usuario); 
     }
-    public void borrar(String id){
+    public void borrar(Long id){
         Usuario usuario = usuarioRepository.findById(id).orElse(null);
         if(usuario != null){
             usuarioRepository.delete(usuario);
@@ -27,7 +27,7 @@ public class UsuarioServiceImp implements UsuarioService {
     public List<Usuario> obtenerTodos(){
         return usuarioRepository.findAll();
     }
-    public Usuario obtenerPorId(String id){
+    public Usuario obtenerPorId(Long id){
         Usuario usuario = usuarioRepository.findById(id).orElse(null);
         if(usuario != null){
            return usuario;

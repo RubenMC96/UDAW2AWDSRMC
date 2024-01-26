@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script>
-      function changeCategory(){
-        window.location.href = "/movimiento/list/"+
-        document.getElementById("select").value;
+      function changeCategory() {
+        window.location.href =
+          "/movimiento/list/" + document.getElementById("select").value;
       }
     </script>
     <title>Movimientos de cuenta</title>
   </head>
-  <body>    
+  <body>
     <h1>Movimientos de cuenta</h1>
     <table border="1px">
       <thead>
@@ -23,9 +23,9 @@
           <th>Cuenta</th>
         </tr>
       </thead>
-      
+
       <tbody>
-        <tr th:each="movim : ${listaMovimientos}">
+        <tr th:each="movimiento : ${listaMovimientos}">
           <td th:text="${movimiento.id}">Id</td>
           <td th:text="${movimiento.fecha}">Fecha</td>
           <td th:text="${movimiento.importe}">Importe</td>

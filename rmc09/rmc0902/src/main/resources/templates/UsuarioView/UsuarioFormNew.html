@@ -11,21 +11,45 @@
     <form
       method="post"
       action="#"
-      th:action="@{/nuevo/submit}"
+      th:action="@{/usuario/nuevo/submit}"
       th:object="${usuarioForm}"
-        >
-        <label>Nombre:<input type="text" id="nombre" th:field="*{nombre}" /> </label><br/>
-        <label
-            >Contraseña: <input type="password" id="password" th:field="*{password}" minlength="4"/></label
-        ><br />
-        <label
-            >Rol: <select name="rol">
-                <option th:each="rol : ${Rol.values()}" 
-                    th:value="${valor}" th:text="${valor}"></option>
-            </select>
-            </label
-        ><br />
-        <input type="submit" value="Enviar" />
+    >
+      <input type="text" id="id" th:field="*{id}" hidden/> </label
+      ><br />
+      <label
+        >Nombre:<input type="text" id="nombre" th:field="*{nombre}" /> </label
+      ><br />
+      <label
+        >Contraseña:
+        <input
+          type="password"
+          id="password"
+          th:field="*{password}"
+          minlength="4" /></label
+      ><br />
+      <label
+        >Rol:
+        <select name="rol">
+          <option
+            th:each="rol : ${Rol}"
+            th:value="${rol}"
+            th:text="${rol}"
+          ></option></select></label
+      ><br />
+
+      <input type="submit" value="Enviar" />
     </form>
+    <a th:href="@{/usuario/}">Volver a lista de usuarios</a>
   </body>
 </html>
+<!-- com.rmc.app.domain
+<div th:each="gen : ${T(com.rmc.ejerciciosT6.domain.Genero).values()}">
+  /src/main/java/com/rmc/ejerciciosT6/domain/Enum.java -->
+<!-- <input
+    type="radio"
+    name="button1"
+    th:value="${gen}"
+    th:text="${gen}"
+    th:field="*{genero}"
+  />
+</div> -->

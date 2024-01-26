@@ -52,10 +52,10 @@ public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
        .defaultSuccessUrl("/", true)
        .permitAll())
    .logout(logout -> logout
-       .logoutSuccessUrl("/")
+       .logoutSuccessUrl("/login")
        .permitAll())
    .httpBasic(Customizer.withDefaults());
-   http.exceptionHandling(exceptions -> exceptions.accessDeniedPage("/"));
+   http.exceptionHandling(exceptions -> exceptions.accessDeniedPage("/login"));
    return http.build();
 }
 }

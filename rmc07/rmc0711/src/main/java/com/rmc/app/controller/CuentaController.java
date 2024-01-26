@@ -1,61 +1,89 @@
 package com.rmc.app.controller;
 
-
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.rmc.app.domain.Cuenta;
-import com.rmc.app.service.CuentaService;
-import com.rmc.app.service.MovimientoService;
 
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.RequestParam;
+
+
+
 
 
 
 
 @Controller
+@RequestMapping("/cuenta")
+
+
 public class CuentaController {
+     @GetMapping({"/"})
+    public String showInicio(){
+        return cuentaService.obtenerTodos();
+    }
 
-    @Autowired
-    public CuentaService cuentaService;
-    @Autowired
-    public MovimientoService movimientoService;
+    @GetMapping("/nuevo")
+    public String nuevaCuenta(Model model) {
 
-        @GetMapping({"/"})
-        public String showList(Model model){
-            model.addAttribute("listacuentas", cuentaService.obtenerTodos());
-            model.addAttribute("cuentaMaxSaldo", cuentaService.obtenerCuentaMaxSaldo());
-            return "CuentaView/ListCuentaView";
+        model.addAttribute("formCuenta", new Cuenta());
+ 
+        return "CuentaView/CuentaFormNew";
+    }
+    @PostMapping("/nuevo/submit")
+    public String showNuevoSubmit(@Valid Cuenta cuentaForm, BindingResult bindingResult) {
+        if(bindingResult.hasErrors()){
+            return "redirect:/cuenta/nuevo";
         }
-        @GetMapping("/new")
-        public String showNuevo(Model model){
-            model.addAttribute("cuentaForm", new Cuenta());
-            return "CuentaView/CuentaFormNew";
-        }
-        @PostMapping("/new/submit")
-        public String showNuevoSubmit (
-            @Valid @ModelAttribute("cuentaForm") Cuenta nuevaCuenta,
-            BindingResult bindingResult){
-                if(bindingResult.hasErrors())
-                    return "redirect:/cuenta/new";
-                cuentaService.añadir(nuevaCuenta);
-                    return "redirect:/";
-        }
+        cuentaService.añadir(cuentaForm);
+        return "redirect:/cuenta/";
+    }
 
-        @GetMapping("/delete/{iban}")
-        public String showDelete(@PathVariable String iban) {
+    @GetMapping("/editar/{iban}")
+    public String getMethodName(@PathVariable String iban ,Model model) {
+
+            Cuenta cuenta = cuentaService.obtenerPorIban(iban);
+
+            if(cuenta != null){
+                model.addAttribute("cuentaForm", cuenta);
+                return "CuentaView/cuentaEdit";
+            }
+
+
+    }
+    
+    @PostMapping("/editar/submit")
+    public String postMethodName(@Valid Cuenta cuentaEdit, BindingResult bindingResult) {
+        
+        if(bindingResult.hasErrors()){
+            return "/cuenta/editar/{iban}";
+        }
+        else{
+            categoriaService.editar(cuentaEdit);
+            return "/cuenta/";
+        }
+    }
+
+    @GetMapping("/borrar/{iban}")
+    public String getMethodName(@PathVariable String iban) {
+        Cuenta cuenta = cuentaService.obtenerPorIban(iban);
+        if(cuenta != null){
             cuentaService.borrar(iban);
-            return "redirect:/";
-            
+            return "redirect:/cuenta/";
         }
-
-
+        else{
+            return "redirect:/cuenta/";
+        }
+    }
+    
+    
+    
     
 }

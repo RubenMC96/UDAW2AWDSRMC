@@ -11,7 +11,7 @@ import com.rmc.app.domain.Movimiento;
 public interface MovimientoService {
     
     public Movimiento añadir(Movimiento movimiento);
-    public List<Movimiento> obteberTodos();
+    public List<Movimiento> obtenerTodos();
     public List <Movimiento> obtenerPorIdCuenta(String iban);
     public LocalDateTime fecha();
 }

@@ -23,7 +23,7 @@
           <td th:text="${cuenta.iban}">IBAN</td>
           <td th:text="${cuenta.saldo}">saldo</td>
           <td>
-            <a th:href="@{/cuenta/delete/{id}(id=${cuenta.id})}"
+            <a th:href="@{/cuenta/delete/{iban}(iban=${cuenta.iban})}"
               >Borrar</a
             >
           </td>
@@ -35,8 +35,14 @@
         </tr>
       </tbody>
     </table>
-    <p>Cuenta con mayor saldo: <span th:text = "${cuentaMaxSaldo.iban}"></span> </p>
-    <a th:href="@{/new}">Nueva cuenta</a><br />
+    <a th:href="@{/cuenta/new}">Nueva cuenta</a><br />
     <a th:href="@{/movimientos/new}">Nuevo movimiento</a><br />
+
+    <form th:action="@{/login}" method="post">
+      <input type="submit" value="Login" />
+    </form>
+    <form th:action="@{/logout}" method="post">
+      <input type="submit" value="Logout" />
+    </form>
   </body>
 </html>

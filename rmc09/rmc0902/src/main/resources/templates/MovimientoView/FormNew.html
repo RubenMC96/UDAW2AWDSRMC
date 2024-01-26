@@ -13,13 +13,18 @@
       action="#"
       th:action="@{/movimientos/new/submit}"
       th:object="${movimientoForm}"
-        >
-        Cuenta <select name="iban" th:field="*{cuenta}">
-          <option th:each="cuenta : ${listacuentas}" th:value="${cuenta.iban}" th:text="${cuenta.iban}"></option>   
-        </select>
-      Importe<input type="text" id="importe" th:field="*{importe}"><br>
+    >
+      Cuenta
+      <select name="iban" th:field="*{cuenta}">
+        <option
+          th:each="cuenta : ${listaCuentas}"
+          th:value="${cuenta.iban}"
+          th:text="${cuenta.iban}"
+        ></option>
+      </select>
+      Importe<input type="text" id="importe" th:field="*{importe}" /><br />
       <input type="submit" value="Enviar" />
     </form>
-    <a th:href="@{/producto/}">Inicio</a><br />
+    <a th:href="@{/cuentas/}">Inicio</a><br />
   </body>
 </html>

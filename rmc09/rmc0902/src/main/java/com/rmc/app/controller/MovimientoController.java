@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.rmc.app.domain.Movimiento;
 import com.rmc.app.service.CuentaService;
@@ -20,6 +21,7 @@ import jakarta.validation.Valid;
 
 
 @Controller
+@RequestMapping("/movimientos")
 public class MovimientoController {
 
     @Autowired
@@ -46,7 +48,7 @@ public class MovimientoController {
             if(bindingResult.hasErrors())
                 return "redirect:/movimiento/new";
             movimientoService.añadir(movimientoForm);
-                return "redirect:/";
+                return "redirect:/movimientos/"+movimientoForm.getCuenta().getIban();
     }
     
 }

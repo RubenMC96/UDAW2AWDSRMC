@@ -10,8 +10,8 @@ import com.rmc.app.domain.Usuario;
 public interface UsuarioService {
     
     public Usuario añadir(Usuario usuario);
-    public void borrar(String id);
+    public void borrar(Long id);
     public List<Usuario> obtenerTodos();
-    public Usuario obtenerPorId(String id);
+    public Usuario obtenerPorId(Long id);
     
 }

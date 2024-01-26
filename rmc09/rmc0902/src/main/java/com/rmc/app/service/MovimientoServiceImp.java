@@ -20,9 +20,19 @@ public class MovimientoServiceImp implements MovimientoService{
     CuentaRepository cuentaRepo;
 
     public Movimiento añadir(Movimiento movimiento){
-        return movRepo.save(movimiento);
+        Cuenta cuenta = cuentaRepo.findById(movimiento.getCuenta().getIban()).orElse(null);
+        if(cuenta != null){
+            Float importe = movimiento.getImporte();
+            Float saldo = cuenta.getSaldo();
+
+            cuenta.setSaldo(saldo + importe);
+            cuentaRepo.save(cuenta);
+            return movRepo.save(movimiento);
+        }
+        return null;
+        
     }
-    public List<Movimiento> obteberTodos(){
+    public List<Movimiento> obtenerTodos(){
         return movRepo.findAll();
     }
     public List <Movimiento> obtenerPorIdCuenta(String iban){
