@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>cuenta CRUD</title>
+  </head>
+  <body>
+    <h1>Cuentas</h1>
+    <table border="1px">
+      <thead>
+        <tr>
+          <th>IBAN</th>
+          <th>Saldo</th>
+          <th>Borrar</th>
+          <th>Movimientos</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr th:each="cuenta : ${listacuentas}">
+          <td th:text="${cuenta.iban}">IBAN</td>
+          <td th:text="${cuenta.saldo}">saldo</td>
+          <td>
+            <a th:href="@{/cuenta/delete/{iban}(iban=${cuenta.iban})}"
+              >Borrar</a
+            >
+          </td>
+          <td>
+            <a th:href="@{/movimientos/{iban}(iban=${cuenta.iban})}"
+              >Movimientos</a
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <a th:href="@{/cuenta/new}">Nueva cuenta</a><br />
+    <a th:href="@{/movimientos/new}">Nuevo movimiento</a><br />
+
+    <a th:href="@{/signin}">Login</a>
+    <a th:href="@{/signout}">Logout</a>
+  </body>
+</html>

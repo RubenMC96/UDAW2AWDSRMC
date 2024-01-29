@@ -66,11 +66,15 @@ public UserDetailsService users(PasswordEncoder passwordEncoder){
     .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
     .requestMatchers("/h2-console/**").hasRole("ADMIN")
     .anyRequest().authenticated())
-    .formLogin(formLogin -> formLogin
-    .defaultSuccessUrl("/", true)
-    .permitAll())
-    .logout(logout -> logout
-    .permitAll())
+    .formLogin(httpSecurityFormLoginConfigurer -> httpSecurityFormLoginConfigurer
+    .loginPage("/signin") // mapping par mostrar formulario de login
+
+    .loginProcessingUrl("/login") // ruta post de /signin
+
+    .failureUrl("/signin")
+    .defaultSuccessUrl("/home", true).permitAll())
+    .logout((logout) -> logout
+    .logoutSuccessUrl("/home").permitAll())
     // .csrf(csrf -> csrf.disable())
     .httpBasic(Customizer.withDefaults());
     http.exceptionHandling(exceptions -> exceptions.accessDeniedPage("/accessError"));
