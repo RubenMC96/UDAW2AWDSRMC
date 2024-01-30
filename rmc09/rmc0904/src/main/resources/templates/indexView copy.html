@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en"
+<html
+  lang="en"
   xmlns:th="https://www.thymeleaf.org"
-  xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity">
+  xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity"
+>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
   <body>
-
     <header>
-      <header>
       <div sec:authorize="!isAuthenticated()">
         <a th:href="@{/signin}"><button>Login</button></a>
       </div>
@@ -20,11 +20,9 @@
       <div sec:authorize="isAuthenticated()">
         <span sec:authentication="name"></span><br />
       </div>
-      <a th:href="@{/public/inicio/}"><button>Inicio</button></a>
-      <a th:href="@{/public/contacto/}"><button>Contacta</button></a>
-      <a th:href="@{/public/somos/}"><button>¿Quienes somos?</button></a>
-      <a th:href="@{/producto/}"><button>Productos</button></a>
-      <a th:href="@{/categoria/}"><button>Categorias</button></a>
+
+      <a th:href="@{/cuenta/}"><button>Cuentas</button></a>
+      <a th:href="@{/usuario/}"><button>Usuarios</button></a>
     </header>
   </body>
 </html>

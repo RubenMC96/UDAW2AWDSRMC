@@ -1,15 +1,15 @@
 package com.rmc.app;
 
+import java.time.LocalDate;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import com.rmc.app.domain.Categoria;
-import com.rmc.app.domain.Producto;
-import com.rmc.app.domain.TipoIva;
-import com.rmc.app.service.CategoriaService;
-import com.rmc.app.service.ProductoService;
+import com.rmc.app.domain.Rol;
+import com.rmc.app.domain.Usuario;
+import com.rmc.app.service.UsuarioService;
 
 @SpringBootApplication
 public class AppApplication {
@@ -19,12 +19,11 @@ public class AppApplication {
 	}
 
 	@Bean
-	public CommandLineRunner initData(CategoriaService categoriaService, ProductoService productoService) {
+	public CommandLineRunner initData(UsuarioService usuarioService) {
 
 		return args -> {
-			categoriaService.añadir(new Categoria(0L, "Ordenadores"));
-			categoriaService.añadir(new Categoria(0L, "Bombillas"));
-			productoService.añadir(new Producto(1L,"HP invictus",true,TipoIva.NORMAL,1000D,categoriaService.obtenerPorNombre("Ordenadores")));
+			usuarioService.añadir(new Usuario(0L, "admin",LocalDate.now(),Rol.ADMIN,"1234"));
+			
 		};
 	}
 

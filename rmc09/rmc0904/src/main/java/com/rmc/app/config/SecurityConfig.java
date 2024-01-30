@@ -10,74 +10,64 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
 public class SecurityConfig {
-@Bean
-public AuthenticationManager authenticationManager(
-AuthenticationConfiguration authenticationConfiguration)
-throws Exception {return authenticationConfiguration.getAuthenticationManager();
-}
-@Bean
-    public PasswordEncoder passwordEncoder() { return new BCryptPasswordEncoder(); }
+    @Bean
+    public AuthenticationManager authenticationManager(
+            AuthenticationConfiguration authenticationConfiguration)
+            throws Exception {
+        return authenticationConfiguration.getAuthenticationManager();
+    }
 
-@Bean
-public UserDetailsService users(PasswordEncoder passwordEncoder){
-        UserDetails user = User.builder()
-                            .username("user1")
-                            .password(passwordEncoder.encode("1234"))
-                            .roles("USER")
-                            .build();
-        UserDetails admin = User.builder()
-                            .username("admin1")
-                            .password(passwordEncoder.encode("1234"))
-                            .roles("ADMIN")
-                            .build();
-        return new InMemoryUserDetailsManager(user, admin);
-}
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
-
-@Bean
+    @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-    http.headers(headersConfigurer -> headersConfigurer
-    .frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin));
-    http.authorizeHttpRequests(
-    auth -> auth
-    .requestMatchers("/").permitAll()
-    .requestMatchers("/cuenta/").permitAll()
-    .requestMatchers("/cuenta/new/**").hasAnyRole("ADMIN", "TITULAR")
-    .requestMatchers("/cuenta/delete/**").hasRole("ADMIN")
-        
-    .requestMatchers("/movimientos/new/**").hasRole("TITULAR")        .requestMatchers("/movimientos/**").authenticated()
-        
-    .requestMatchers("/usuario/").hasRole("ADMIN")
-    .requestMatchers("/usuario/nuevo/**").permitAll()
-    .requestMatchers("/usuario/borrar/**").hasRole("ADMIN")
+        http.headers(headersConfigurer -> headersConfigurer
+                .frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin));
+        http.authorizeHttpRequests(
+                auth -> auth
 
-    .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-    .requestMatchers("/h2-console/**").hasRole("ADMIN")
-    .anyRequest().authenticated())
-    .formLogin(httpSecurityFormLoginConfigurer -> httpSecurityFormLoginConfigurer
-    .loginPage("/signin") // mapping par mostrar formulario de login
+                        .requestMatchers("/categoria/**").hasAnyRole("ADMIN", "MANAGER")
 
-    .loginProcessingUrl("/login") // ruta post de /signin
+                        .requestMatchers("/productos/**").hasAnyRole("ADMIN", "MANAGER")
 
-    .failureUrl("/signin")
-    .defaultSuccessUrl("/home", true).permitAll())
-    .logout((logout) -> logout
-    .logoutSuccessUrl("/home").permitAll())
-    // .csrf(csrf -> csrf.disable())
-    .httpBasic(Customizer.withDefaults());
-    http.exceptionHandling(exceptions -> exceptions.accessDeniedPage("/accessError"));
-    return http.build();
-}
+                        .requestMatchers("/usuario/").hasAnyRole("ADMIN", "MANAGER")
+                        .requestMatchers("/usuario/nuevo/**", "/usuario/editar/**", "/usuario/borrar/**")
+                        .hasRole("ADMIN")
+
+                        .requestMatchers("/valoracion/nuevo/**").hasAnyRole("MANAGER", "ADMIN", "USER")
+                        .requestMatchers("/valoracion/usuario/**", "/valoracion/editar/**", "/valoracion/borrar/**")
+                        .hasAnyRole("MANAGER", "ADMIN")
+
+                        .requestMatchers("/", "/public/**", "/categoria/", "/producto/",
+                                "/valoracion/producto/**")
+                        .permitAll()
+
+                        .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
+                        .requestMatchers("/h2-console/**").hasRole("ADMIN")
+                        .anyRequest().authenticated())
+                .formLogin(httpSecurityFormLoginConfigurer -> httpSecurityFormLoginConfigurer
+                        .loginPage("/signin") // mapping par mostrar formulario de login
+
+                        .loginProcessingUrl("/login") // ruta post de /signin
+
+                        .failureUrl("/signin")
+                        .defaultSuccessUrl("/home", true).permitAll())
+                .logout((logout) -> logout
+                        .logoutSuccessUrl("/home").permitAll())
+                // .csrf(csrf -> csrf.disable())
+                .httpBasic(Customizer.withDefaults());
+        http.exceptionHandling(exceptions -> exceptions.accessDeniedPage("/accessError"));
+        return http.build();
+    }
 }

@@ -21,5 +21,6 @@ public class Usuario {
     private Long id;
     private String nombre;
     private LocalDate fechaRegistro;
-    
+    private Rol rol;
+    private String password;
 }
