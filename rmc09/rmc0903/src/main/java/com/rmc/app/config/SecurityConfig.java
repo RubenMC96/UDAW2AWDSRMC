@@ -30,20 +30,6 @@ throws Exception {return authenticationConfiguration.getAuthenticationManager();
 @Bean
     public PasswordEncoder passwordEncoder() { return new BCryptPasswordEncoder(); }
 
-@Bean
-public UserDetailsService users(PasswordEncoder passwordEncoder){
-        UserDetails user = User.builder()
-                            .username("user1")
-                            .password(passwordEncoder.encode("1234"))
-                            .roles("USER")
-                            .build();
-        UserDetails admin = User.builder()
-                            .username("admin1")
-                            .password(passwordEncoder.encode("1234"))
-                            .roles("ADMIN")
-                            .build();
-        return new InMemoryUserDetailsManager(user, admin);
-}
 
 
 @Bean
@@ -65,7 +51,7 @@ public UserDetailsService users(PasswordEncoder passwordEncoder){
 
     .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
     .requestMatchers("/h2-console/**").hasRole("ADMIN")
-    .anyRequest().authenticated())
+    .anyRequest().permitAll())
     .formLogin(httpSecurityFormLoginConfigurer -> httpSecurityFormLoginConfigurer
     .loginPage("/signin") // mapping par mostrar formulario de login
 

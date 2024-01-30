@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -20,7 +21,7 @@ public class Usuario {
     @GeneratedValue
     private Long id;
     private String nombre;
-    @Min(4)
+    @Size(min = 4)
     private String password;
     private Rol rol;
 
