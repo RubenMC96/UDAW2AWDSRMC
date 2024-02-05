@@ -14,14 +14,20 @@
       th:action="@{/valoracion/nuevo/submit}"
       th:object="${valoracionForm}"
     >
-      <label>Id:<input type="text" id="id" th:field="*{id}" /> </label><br />
+      <label>Id:<input type="text" id="id" th:field="*{id}" hidden /> </label
+      ><br />
       <label
         >Comentario:
         <input type="text" id="comentario" th:field="*{comentario}" /></label
       ><br />
       <label
         >Puntuacion:
-        <input type="number" id="puntuacion" th:field="*{puntuacion}" /></label
+        <input
+          type="number"
+          id="puntuacion"
+          th:field="*{puntuacion}"
+          min="0"
+          max="5" /></label
       ><br />
       <input type="submit" value="Enviar" />
     </form>

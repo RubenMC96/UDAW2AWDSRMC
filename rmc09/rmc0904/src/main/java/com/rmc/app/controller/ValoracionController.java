@@ -24,7 +24,7 @@ public class ValoracionController {
     @Autowired
     public ProductoService productoService;
 
-    @GetMapping({ "/", "/producto/{idProd}" })
+    @GetMapping({ "/producto/{idProd}" })
     public String showProducto(@PathVariable long idProd, Model model) {
         model.addAttribute("listaValoracion", valoracionService.obtenerPorProducto(idProd));
         return "valoracionView/ListValView";
@@ -49,7 +49,7 @@ public class ValoracionController {
         if (bindingResult.hasErrors())
             return "redirect:/valoracion/nuevo";
         valoracionService.añadir(valoracionForm);
-        return "redirect:/valoracion/";
+        return "redirect:/valoracion/producto/" + valoracionForm.getProducto().getId();
     }
 
     @PostMapping("/editar/submit")
@@ -57,9 +57,9 @@ public class ValoracionController {
             @Valid Valoracion valoracionForm,
             BindingResult bindingResult) {
         if (bindingResult.hasErrors())
-            return "redirect:/valoracion/editar/{id}";
+            return "redirect:/valoracion/editar/" + valoracionForm.getId();
         valoracionService.editar(valoracionForm);
-        return "redirect:/valoracion/list";
+        return "redirect:/valoracion/producto/" + valoracionForm.getProducto().getId();
     }
 
     @GetMapping("/editar/{id}")
