@@ -49,7 +49,7 @@ public class ValoracionController {
         if (bindingResult.hasErrors())
             return "redirect:/valoracion/nuevo";
         valoracionService.añadir(valoracionForm);
-        return "redirect:/valoracion/list";
+        return "redirect:/valoracion/";
     }
 
     @PostMapping("/editar/submit")

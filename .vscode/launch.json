@@ -2,6 +2,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "AppApplication",
+      "request": "launch",
+      "mainClass": "com.rmc.app.AppApplication",
+      "projectName": "rmc0904"
+    },
+    {
+      "type": "java",
       "name": "DemoApplication",
       "request": "launch",
       "mainClass": "com.app.demo.DemoApplication",

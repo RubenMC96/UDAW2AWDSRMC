@@ -1,7 +1,5 @@
 package com.rmc.app.controller;
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,46 +13,49 @@ import com.rmc.app.service.ContactoService;
 
 import jakarta.validation.Valid;
 
-
-
-
 @Controller
-@RequestMapping("/public") 
+@RequestMapping("/public")
 public class PublicController {
 
     @Autowired
     public ContactoService contactoService;
 
-        @GetMapping({"/inicio"})
-        public String showInicio(){
-            
-            return "indexView";
-        }
-        @GetMapping("/contacto")
-        public String showContacto(Model model){
-            model.addAttribute("contactoForm", new Contacto());
-            return "ContactoView/ContFormNew";
-        }
-        @PostMapping("/contacto/submit")
-        public String showContactoSubmit (
+    @GetMapping({ "/inicio" })
+    public String showInicio() {
+
+        return "indexView";
+    }
+
+    @GetMapping("/contacto")
+    public String showContacto(Model model) {
+        model.addAttribute("contactoForm", new Contacto());
+        return "ContactoView/ContFormNew";
+    }
+
+    @PostMapping("/contacto/submit")
+    public String showContactoSubmit(
             @Valid Contacto contactoForm,
-            BindingResult bindingResult){
-                if(bindingResult.hasErrors())
-                    return "redirect:/public/contacto";
-                contactoService.añadir(contactoForm);
-                    return "redirect:/public/";
-        }
+            BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return "redirect:/public/contacto";
+        contactoService.añadir(contactoForm);
+        return "redirect:/public/inicio";
+    }
 
-        @GetMapping("/somos")
-        public String showSomos() {
-            // si no lo encuentra vuelve a la página de inicio.
-            return "/SomosView/quienesSomosView";
-        }
+    @GetMapping("/somos")
+    public String showSomos() {
+        // si no lo encuentra vuelve a la página de inicio.
+        return "/SomosView/quienesSomosView";
+    }
 
-        @GetMapping("/signin")
-        public String showLogin() { return "signinView"; }
-        @GetMapping("/signout")
-        public String showLogout() { return "signoutView"; }
+    @GetMapping("/signin")
+    public String showLogin() {
+        return "signinView";
+    }
 
-    
+    @GetMapping("/signout")
+    public String showLogout() {
+        return "signoutView";
+    }
+
 }
