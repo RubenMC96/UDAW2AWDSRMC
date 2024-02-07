@@ -9,8 +9,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.rmc.app.domain.Producto;
+import com.rmc.app.domain.Usuario;
 import com.rmc.app.domain.Valoracion;
 import com.rmc.app.service.ProductoService;
+import com.rmc.app.service.UsuarioService;
 import com.rmc.app.service.ValoracionService;
 
 import jakarta.validation.Valid;
@@ -23,6 +26,8 @@ public class ValoracionController {
     public ValoracionService valoracionService;
     @Autowired
     public ProductoService productoService;
+    @Autowired
+    public UsuarioService usuarioService;
 
     @GetMapping({ "/producto/{idProd}" })
     public String showProducto(@PathVariable long idProd, Model model) {
@@ -36,9 +41,11 @@ public class ValoracionController {
         return "valoracionView/ListValView";
     }
 
-    @GetMapping("/nuevo")
-    public String showNuevo(Model model) {
-        model.addAttribute("valoracionForm", new Valoracion());
+    @GetMapping("/nuevo/{idProd}")
+    public String showNuevo(@PathVariable long idProd, Model model) {
+        Producto producto = productoService.obtenerPorId(idProd);
+        Usuario usuario = usuarioService.obtenerUsuarioConectado();
+        model.addAttribute("valoracionForm", new Valoracion(0L, null, null, usuario, producto));
         return "valoracionView/ValFormNew";
     }
 

@@ -29,8 +29,13 @@
           min="0"
           max="5" /></label
       ><br />
+       <label><input type="text" id="producto" th:field="*{producto}" hidden /> </label
+      ><br />
+       <label><input type="text" id="usuario" th:field="*{usuario}" hidden /> </label
+      ><br />
       <input type="submit" value="Enviar" />
     </form>
-    <a th:href="@{/valoracion/}">Inicio</a><br />
+    <a th:href="@{/valoracion/producto/}">Inicio</a><br /> 
+    <!-- Mirar como hacer el return a valoracion/producto/idprod -->
   </body>
 </html>
