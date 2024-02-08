@@ -38,8 +38,8 @@ public class ValoracionController {
     }
 
     @GetMapping("/usuario/{idUsuario}")
-    public String showUsuario(@PathVariable long id, Model model) {
-        model.addAttribute("listaValoracion", valoracionService.obtenerPorUsuario(id));
+    public String showUsuario(@PathVariable long idUsuario, Model model) {
+        model.addAttribute("listaValoracion", valoracionService.obtenerPorUsuario(idUsuario));
         return "valoracionView/ListValView";
     }
 
