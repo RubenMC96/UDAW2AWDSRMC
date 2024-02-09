@@ -1,6 +1,5 @@
 package com.rmc.app.domain;
 
-import java.time.LocalDate;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,10 +14,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 @Entity
-public class UsuarioDTO {
+public class UsuarioPasswordDTO {
     @Id
     @GeneratedValue
     private Long id;
-    private String nombre;
-    private Rol rol;
+    private String password;
 }
