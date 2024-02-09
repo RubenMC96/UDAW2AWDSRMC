@@ -62,29 +62,6 @@ public class ValoracionController {
         return "redirect:/valoracion/producto/" + valoracionForm.getProducto().getId();
     }
 
-    // @PostMapping("/editar/submit")
-    // public String showEditSubmit(
-    // @Valid Valoracion valoracionForm,
-    // BindingResult bindingResult) {
-    // if (bindingResult.hasErrors())
-    // return "redirect:/valoracion/editar/" + valoracionForm.getId();
-    // valoracionService.editar(valoracionForm);
-    // return "redirect:/valoracion/producto/" +
-    // valoracionForm.getProducto().getId();
-    // }
-
-    // @GetMapping("/editar/{id}")
-    // public String showEditForm(@PathVariable long id, Model model) {
-    // Valoracion valoracion = valoracionService.obtenerPorId(id);
-    // // el commandobject del formulario es el empleado con el id solicitado
-    // if (valoracion != null) {
-    // model.addAttribute("ValoracionForm", valoracion);
-    // return "valoracionView/ValFormEdit";
-    // }
-    // // si no lo encuentra vuelve a la página de inicio.
-    // return "redirect:/valoracion/list";
-    // }
-
     @GetMapping("/borrar/{idValoracion}")
     public String showDelete(@PathVariable long idValoracion) {
         Valoracion valoracion = valoracionService.obtenerPorId(idValoracion);
