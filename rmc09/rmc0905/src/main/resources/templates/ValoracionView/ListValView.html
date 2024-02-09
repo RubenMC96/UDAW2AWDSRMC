@@ -14,11 +14,16 @@
           <th>Usuario</th>
           <th>Comentario</th>
           <th>Puntuacion</th>
+<<<<<<< HEAD
           <th>Fecha de publicacion</th>
+=======
+          <th>Usuario</th>
+>>>>>>> 545afc3b02556fc70d674011db0edcce3801c0a6
         </tr>
       </thead>
 
       <tbody>
+<<<<<<< HEAD
         <tr th:each="valoracion : ${listavaloraciones}">
           <td th:text="${valoracion.id}">Id</td>
           <td th:text="${producto.nombre}">Usuario</td>
@@ -34,11 +39,25 @@
             <a th:href="@{/valoracion/borrar/{id}(id=${valoracion.id})}"
               >Borrar</a
             >
+=======
+        <tr th:each="valoracion : ${listaValoracion}">
+          <td th:text="${valoracion.id}">Id</td>
+          <td th:text="${producto.nombre}">Nombre producto</td>
+          <td th:text="${valoracion.comentario}">Comentario</td>
+          <td th:text="${valoracion.puntuacion}">Puntuacion</td>
+          <td th:text="${valoracion.usuario.nombre}">Usuario</td>
+          <td>
+            <a th:href="@{/valoracion/borrar/{id}(id=${valoracion.id})}">Borrar</a>
+>>>>>>> 545afc3b02556fc70d674011db0edcce3801c0a6
           </td>
         </tr>
       </tbody>
     </table>
     <a th:href="@{/inicio}">Inicio</a><br />
+<<<<<<< HEAD
     <a th:href="@{/valoracion/nuevo}">Nueva valoracion</a><br />
+=======
+    <a th:href="@{/valoracion/nuevo/{id}(id=${producto.id})}">Nueva valoracion</a><br />
+>>>>>>> 545afc3b02556fc70d674011db0edcce3801c0a6
   </body>
 </html>

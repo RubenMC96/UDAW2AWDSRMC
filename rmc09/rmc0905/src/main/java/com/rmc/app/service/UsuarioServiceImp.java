@@ -4,6 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+<<<<<<< HEAD
+=======
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+>>>>>>> 545afc3b02556fc70d674011db0edcce3801c0a6
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -76,4 +82,18 @@ public class UsuarioServiceImp implements UsuarioService {
 
         return usuRepo.findByNombre(nombre);
     }
+<<<<<<< HEAD
+=======
+
+    public Usuario obtenerUsuarioConectado() {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            String nombreUsuarioConectado = authentication.getName();
+
+            return usuRepo.findByNombre(nombreUsuarioConectado);
+        }
+        return null;
+    }
+>>>>>>> 545afc3b02556fc70d674011db0edcce3801c0a6
 }

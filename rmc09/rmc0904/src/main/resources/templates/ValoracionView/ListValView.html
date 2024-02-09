@@ -14,31 +14,24 @@
           <th>Usuario</th>
           <th>Comentario</th>
           <th>Puntuacion</th>
-          <th>Fecha de publicacion</th>
+          <th>Usuario</th>
         </tr>
       </thead>
 
       <tbody>
-        <tr th:each="valoracion : ${listavaloraciones}">
+        <tr th:each="valoracion : ${listaValoracion}">
           <td th:text="${valoracion.id}">Id</td>
-          <td th:text="${producto.nombre}">Usuario</td>
+          <td th:text="${producto.nombre}">Nombre producto</td>
           <td th:text="${valoracion.comentario}">Comentario</td>
           <td th:text="${valoracion.puntuacion}">Puntuacion</td>
-          <td th:text="${valoracion.fecha}">Fecha</td>
+          <td th:text="${valoracion.usuario.nombre}">Usuario</td>
           <td>
-            <a th:href="@{/valoracion/editar/{id}(id=${valoracion.id})}"
-              >Editar</a
-            >
-          </td>
-          <td>
-            <a th:href="@{/valoracion/borrar/{id}(id=${valoracion.id})}"
-              >Borrar</a
-            >
+            <a th:href="@{/valoracion/borrar/{id}(id=${valoracion.id})}">Borrar</a>
           </td>
         </tr>
       </tbody>
     </table>
     <a th:href="@{/inicio}">Inicio</a><br />
-    <a th:href="@{/valoracion/nuevo}">Nueva valoracion</a><br />
+    <a th:href="@{/valoracion/nuevo/{id}(id=${producto.id})}">Nueva valoracion</a><br />
   </body>
 </html>

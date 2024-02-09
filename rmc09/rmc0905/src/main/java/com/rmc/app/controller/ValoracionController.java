@@ -9,8 +9,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+<<<<<<< HEAD
 import com.rmc.app.domain.Valoracion;
 import com.rmc.app.service.ProductoService;
+=======
+import com.rmc.app.domain.Producto;
+import com.rmc.app.domain.Usuario;
+import com.rmc.app.domain.Valoracion;
+import com.rmc.app.service.ProductoService;
+import com.rmc.app.service.UsuarioService;
+>>>>>>> 545afc3b02556fc70d674011db0edcce3801c0a6
 import com.rmc.app.service.ValoracionService;
 
 import jakarta.validation.Valid;
@@ -23,10 +31,21 @@ public class ValoracionController {
     public ValoracionService valoracionService;
     @Autowired
     public ProductoService productoService;
+<<<<<<< HEAD
 
     @GetMapping({ "/producto/{idProd}" })
     public String showProducto(@PathVariable long idProd, Model model) {
         model.addAttribute("listaValoracion", valoracionService.obtenerPorProducto(idProd));
+=======
+    @Autowired
+    public UsuarioService usuarioService;
+
+    @GetMapping({ "/producto/{idProd}" })
+    public String showProducto(@PathVariable long idProd, Model model) {
+        Producto producto = productoService.obtenerPorId(idProd);
+        model.addAttribute("listaValoracion", valoracionService.obtenerPorProducto(idProd));
+        model.addAttribute("producto", producto);
+>>>>>>> 545afc3b02556fc70d674011db0edcce3801c0a6
         return "valoracionView/ListValView";
     }
 
@@ -36,9 +55,18 @@ public class ValoracionController {
         return "valoracionView/ListValView";
     }
 
+<<<<<<< HEAD
     @GetMapping("/nuevo")
     public String showNuevo(Model model) {
         model.addAttribute("valoracionForm", new Valoracion());
+=======
+    @GetMapping("/nuevo/{idProd}")
+    public String showNuevo(@PathVariable long idProd, Model model) {
+        Producto producto = productoService.obtenerPorId(idProd);
+        Usuario usuario = usuarioService.obtenerUsuarioConectado();
+        model.addAttribute("valoracionForm", new Valoracion(0L, null, null, usuario, producto));
+        model.addAttribute("producto", producto);
+>>>>>>> 545afc3b02556fc70d674011db0edcce3801c0a6
         return "valoracionView/ValFormNew";
     }
 
@@ -52,6 +80,7 @@ public class ValoracionController {
         return "redirect:/valoracion/producto/" + valoracionForm.getProducto().getId();
     }
 
+<<<<<<< HEAD
     @PostMapping("/editar/submit")
     public String showEditSubmit(
             @Valid Valoracion valoracionForm,
@@ -81,6 +110,38 @@ public class ValoracionController {
             return "redirect:/valoracion/list";
         }
         return "redirect:/valoracion/";
+=======
+    // @PostMapping("/editar/submit")
+    // public String showEditSubmit(
+    // @Valid Valoracion valoracionForm,
+    // BindingResult bindingResult) {
+    // if (bindingResult.hasErrors())
+    // return "redirect:/valoracion/editar/" + valoracionForm.getId();
+    // valoracionService.editar(valoracionForm);
+    // return "redirect:/valoracion/producto/" +
+    // valoracionForm.getProducto().getId();
+    // }
+
+    // @GetMapping("/editar/{id}")
+    // public String showEditForm(@PathVariable long id, Model model) {
+    // Valoracion valoracion = valoracionService.obtenerPorId(id);
+    // // el commandobject del formulario es el empleado con el id solicitado
+    // if (valoracion != null) {
+    // model.addAttribute("ValoracionForm", valoracion);
+    // return "valoracionView/ValFormEdit";
+    // }
+    // // si no lo encuentra vuelve a la página de inicio.
+    // return "redirect:/valoracion/list";
+    // }
+
+    @GetMapping("/borrar/{idValoracion}")
+    public String showDelete(@PathVariable long idValoracion) {
+        Valoracion valoracion = valoracionService.obtenerPorId(idValoracion);
+        if (valoracion != null) {
+            valoracionService.borrar(idValoracion);
+        }
+        return "redirect:/valoracion/producto/" + valoracion.getProducto().getId();
+>>>>>>> 545afc3b02556fc70d674011db0edcce3801c0a6
 
     }
 
