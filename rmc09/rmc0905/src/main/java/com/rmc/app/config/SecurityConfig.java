@@ -45,11 +45,13 @@ public class SecurityConfig {
                         .requestMatchers("/usuario/").hasAnyRole("ADMIN", "MANAGER")
                         .requestMatchers("/usuario/nuevo/**", "/usuario/editar/**", "/usuario/borrar/**")
                         .hasRole("ADMIN")
+                        .requestMatchers("/usuario/autoUsuario", "/usuario/autoUsuario/**").permitAll()
                         .requestMatchers("/usuario/editarUsuario", "/usuario/editarUsuario/**", "/usuario/editarPassword", "/usuario/editarPassword/**").authenticated()
 
                         .requestMatchers("/valoracion/nuevo/**").hasAnyRole("MANAGER", "ADMIN", "USER")
-                        .requestMatchers("/valoracion/usuario/**", "/valoracion/editar/**", "/valoracion/borrar/**")
+                        .requestMatchers("/valoracion/usuario/**", "/valoracion/editar/**")
                         .hasAnyRole("MANAGER", "ADMIN")
+                        .requestMatchers("/valoracion/borrar/**").hasAnyRole("ADMIN","MANAGER", "USER")
 
                         .requestMatchers("/", "/public/**", "/categoria/", "/producto/",
                                 "/valoracion/producto/**")
@@ -68,6 +70,7 @@ public class SecurityConfig {
                 .logout((logout) -> logout
                         .logoutSuccessUrl("/home").permitAll())
                 // .csrf(csrf -> csrf.disable())
+                .rememberMe(Customizer.withDefaults())
                 .httpBasic(Customizer.withDefaults());
         http.exceptionHandling(exceptions -> exceptions.accessDeniedPage("/accessError"));
         return http.build();

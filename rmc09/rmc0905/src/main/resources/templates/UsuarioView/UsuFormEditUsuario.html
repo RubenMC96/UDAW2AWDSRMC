@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="/src/main/java/com/rmc/ejerciciosT6/controller/EmpleadoController.java"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Editar usuario</h1>
+    <form
+      method="post"
+      action="#"
+      th:action="@{/usuario/editarUsuario/submit}"
+      th:object="${usuarioFormEdit}"
+    >
+      <label>Id:<input type="text" readonly id="id" th:field="*{id}" hidden/> </label
+      ><br />
+      <label
+        >Nombre: <input type="text" id="nombre" th:field="*{nombre}" /></label
+      ><br />
+      <label
+        >Rol:
+        <select name="rol">
+          <option
+            th:each="rol : ${Rol}"
+            th:value="${rol}"
+            th:text="${rol}"
+          ></option></select></label
+      ><br />
+      <input type="submit" value="Enviar" />
+    </form>
+    <a th:href="@{/public/inicio}">Inicio</a><br />
+  </body>
+</html>

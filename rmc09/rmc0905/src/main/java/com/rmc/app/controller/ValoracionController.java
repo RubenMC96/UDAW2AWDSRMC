@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.rmc.app.domain.Producto;
+import com.rmc.app.domain.Rol;
 import com.rmc.app.domain.Usuario;
 import com.rmc.app.domain.Valoracion;
 import com.rmc.app.service.ProductoService;
@@ -62,11 +63,19 @@ public class ValoracionController {
         return "redirect:/valoracion/producto/" + valoracionForm.getProducto().getId();
     }
 
-    @GetMapping("/borrar/{idValoracion}")
+    @GetMapping("/borrar/{idValoracion}")     
     public String showDelete(@PathVariable long idValoracion) {
         Valoracion valoracion = valoracionService.obtenerPorId(idValoracion);
         if (valoracion != null) {
-            valoracionService.borrar(idValoracion);
+            Usuario usuario = usuarioService.obtenerUsuarioConectado();
+            if(usuario.getRol() == Rol.USER){
+                if(usuario.getId() == valoracion.getUsuario().getId()){
+                    valoracionService.borrar(idValoracion);
+                }
+            }
+            else{
+                valoracionService.borrar(idValoracion);
+            }
         }
         return "redirect:/valoracion/producto/" + valoracion.getProducto().getId();
 
