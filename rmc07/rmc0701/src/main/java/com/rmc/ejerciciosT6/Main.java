@@ -17,26 +17,26 @@ public class Main {
 	public static void main(String[] args) {
 		SpringApplication.run(Main.class, args);
 	}
-	@Bean
-		CommandLineRunner initData(EmpleadoService empleadoService, DepartamentoService departamentoService) {
-			return args -> {
+	// @Bean
+	// 	CommandLineRunner initData(EmpleadoService empleadoService, DepartamentoService departamentoService) {
+	// 		return args -> {
 
-				departamentoService.añadir(new Departamento(0L, "Informatica"));
-				departamentoService.añadir(new Departamento(0L, "RRHH"));
+	// 			departamentoService.añadir(new Departamento(0L, "Informatica"));
+	// 			departamentoService.añadir(new Departamento(0L, "RRHH"));
 
 
-				empleadoService.añadir(
-					new Empleado(0L, 
-							"pepe", 
-							"pepe@gmail.com", 
-							1000d, 
-							true,
-							Genero.MASCULINO,
-							departamentoService.obtenerPorNombre("RRHH")));
+	// 			empleadoService.añadir(
+	// 				new Empleado(0L, 
+	// 						"pepe", 
+	// 						"pepe@gmail.com", 
+	// 						1000d, 
+	// 						true,
+	// 						Genero.MASCULINO,
+	// 						departamentoService.obtenerPorNombre("RRHH")));
 					
-				empleadoService.añadir(
-					new Empleado(0L, "ana", "ana@gmail.com", 2000d, true, Genero.FEMENINO, departamentoService.obtenerPorNombre("Informatica")));
-			};
-	}
+	// 			empleadoService.añadir(
+	// 				new Empleado(0L, "ana", "ana@gmail.com", 2000d, true, Genero.FEMENINO, departamentoService.obtenerPorNombre("Informatica")));
+	// 		};
+	// }
 
 }
