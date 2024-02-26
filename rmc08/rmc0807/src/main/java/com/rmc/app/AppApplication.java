@@ -25,6 +25,7 @@ public class AppApplication {
 			categoriaService.añadir(new Categoria(0L, "Ordenadores"));
 			categoriaService.añadir(new Categoria(0L, "Bombillas"));
 			productoService.añadir(new Producto(1L,"HP invictus",true,TipoIva.NORMAL,1000D,categoriaService.obtenerPorNombre("Ordenadores")));
+			productoService.añadir(new Producto(2L,"Acer Aspire",true,TipoIva.NORMAL,2000D,categoriaService.obtenerPorNombre("Ordenadores")));
 		};
 	}
 

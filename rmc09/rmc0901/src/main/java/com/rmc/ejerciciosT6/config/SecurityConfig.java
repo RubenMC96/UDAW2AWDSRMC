@@ -57,9 +57,10 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http.headers(headersConfigurer -> headersConfigurer.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin));
 
-        http.authorizeHttpRequests(auth -> auth.requestMatchers("/").permitAll()
-            .requestMatchers("/nuevo/**").hasAnyRole("USER","ADMIN")
-            .requestMatchers("/editar/**", "/borrar/**").hasRole("ADMIN")
+        http.authorizeHttpRequests(auth -> auth
+            .requestMatchers("/empleado/list").permitAll()
+            .requestMatchers("/empleado/nuevo/**").hasAnyRole("USER","ADMIN")
+            .requestMatchers("/empleado/editar/**", "/empleado/borrar/**").hasRole("ADMIN")
             .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
             .requestMatchers("/h2-console/**").hasRole("ADMIN")
             .anyRequest().authenticated())

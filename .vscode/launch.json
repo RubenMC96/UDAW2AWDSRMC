@@ -2,6 +2,83 @@
   "configurations": [
     {
       "type": "java",
+      "name": "AppApplication",
+      "request": "launch",
+      "mainClass": "com.rmc.app.AppApplication",
+      "projectName": "rmc0905"
+    },
+    {
+      "type": "java",
+      "name": "AppApplication",
+      "request": "launch",
+      "mainClass": "com.rmc.app.AppApplication",
+      "projectName": "rmc0903"
+    },
+    {
+      "type": "java",
+      "name": "AppApplication",
+      "request": "launch",
+      "mainClass": "com.rmc.app.AppApplication",
+      "projectName": "rmc0711"
+    },
+    {
+      "type": "java",
+      "name": "Main",
+      "request": "launch",
+      "mainClass": "com.rmc.ejerciciosT6.Main",
+      "projectName": "rmc0701"
+    },
+    {
+      "type": "java",
+      "name": "AppApplication",
+      "request": "launch",
+      "mainClass": "com.rmc.app.AppApplication",
+      "projectName": "rmc0807"
+    },
+    {
+      "type": "java",
+      "name": "Main",
+      "request": "launch",
+      "mainClass": "com.rmc.ejerciciosT6.Main",
+      "projectName": "rmc0804"
+    },
+    {
+      "type": "java",
+      "name": "AppApplication",
+      "request": "launch",
+      "mainClass": "com.rmc.app.AppApplication",
+      "projectName": "rmc0805"
+    },
+    {
+      "type": "java",
+      "name": "Main",
+      "request": "launch",
+      "mainClass": "com.rmc.ejerciciosT6.Main",
+      "projectName": "com.rmc-rmc0804"
+    },
+    {
+      "type": "java",
+      "name": "Main",
+      "request": "launch",
+      "mainClass": "com.rmc.ejerciciosT6.Main",
+      "projectName": "com.rmc-rmc0801"
+    },
+    {
+      "type": "java",
+      "name": "Main",
+      "request": "launch",
+      "mainClass": "com.rmc.ejerciciosT6.Main",
+      "projectName": "com.rmc-rmc0803"
+    },
+    {
+      "type": "java",
+      "name": "MyappApplication",
+      "request": "launch",
+      "mainClass": "com.example.myapp.MyappApplication",
+      "projectName": "com.example-rmc0802"
+    },
+    {
+      "type": "java",
       "name": "Main",
       "request": "launch",
       "mainClass": "com.rmc.ejerciciosT6.Main",

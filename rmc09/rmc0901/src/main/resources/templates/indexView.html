@@ -31,14 +31,13 @@
           <td th:text="${empleado.genero}">genero</td>
           <td th:text="${empleado.departamento.nombre}">Departamento</td>
           
-          <td><a th:href="@{/editar/{id}(id=${empleado.id})}">Editar</a></td>
-          <td><a th:href="@{/borrar/{id}(id=${empleado.id})}">Borrar</a></td>
+          <td><a th:href="@{/empleado/editar/{id}(id=${empleado.id})}">Editar</a></td>
+          <td><a th:href="@{/empleado/borrar/{id}(id=${empleado.id})}">Borrar</a></td>
         </tr>
       </tbody>
     </table>
-    <a th:href="@{/}">Inicio</a><br />
-    <a th:href="@{/nuevo}">Nuevo empleado</a><br />
-    <a th:href="@{/new}">Nuevo empleado</a><br/>
+    <a th:href="@{/empleado}">Inicio</a><br />
+    <a th:href="@{/empleado/nuevo}">Nuevo empleado</a><br />
     <script>
     function changeDepartamento(){
     const select = document.getElementById("select");

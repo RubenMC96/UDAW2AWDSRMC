@@ -35,8 +35,7 @@ public class MovimientoController {
     public MovimientoService movimientoService;
     @Autowired
     public CuentaService cuentaService;
-    @Autowired
-    public NuevaCuentaDTO nuevaCuentaDTO;
+    
 /*Modificar el /new*/
 
     @GetMapping({"/movimiento/{iban}"})

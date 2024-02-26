@@ -58,48 +58,14 @@ public class EmpleadoController {
         if (empleado == null)
             return ResponseEntity.notFound().build();
         else
-            return ResponseEntity.noContent().build();
+        empleadoService.editar(empleado);
+            return ResponseEntity.ok(empleado);
     }
 
-    @GetMapping("/editar/{id}")
-    public String showEditForm(@PathVariable long id, Model model) {
-        Empleado empleado = empleadoService.obtenerPorId(id);
-        // el commandobject del formulario es el empleado con el id solicitado
-        if (empleado != null) {
-            model.addAttribute("empleadoForm", empleado);
-            return "FormEdit";
-        }
-        // si no lo encuentra vuelve a la página de inicio.
-        return "redirect:/list";
-    }
-
-    @PutMapping("/editar/submit")
-    public String showEditSubmit(
-            @Valid Empleado empleadoForm,
-            BindingResult bindingResult) {
-        if (!bindingResult.hasErrors())
-            empleadoService.editar(empleadoForm);
-        return "redirect:/list";
-    }
-
+   
     @DeleteMapping("/borrar/{id}")
-    public String showDelete(@PathVariable long id) {
+    public ResponseEntity<?> showDelete(@PathVariable long id) {
         empleadoService.borrar(id);
-        return "redirect:/list";
-    }
-
-    @GetMapping("/listado1/{salario}")
-    public String showListado1(@PathVariable Double salario, Model model) {
-        List<Empleado> empleados = empleadoService.obtenerEmpleadosSalarioMayor (salario);
-        model.addAttribute("tituloListado", "Empleados salario mayor que" + salario.toString());
-        model.addAttribute("listaEmpleados", empleados);
-        return "listadosView";
-    }
-    @GetMapping("/listado2")
-    public String showListado2(Model model) {
-        List<Empleado> empleados = empleadoService.obtenerEmpleadoSalarioMayorMedia();
-        model.addAttribute("tituloListado", "Empleados salario mayor que la media");
-        model.addAttribute("listaEmpleados", empleados);
-        return "listadosView";
+        return ResponseEntity.noContent().build();
     }
 }

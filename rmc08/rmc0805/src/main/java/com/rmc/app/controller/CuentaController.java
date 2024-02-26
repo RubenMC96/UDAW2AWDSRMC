@@ -48,10 +48,6 @@ public class CuentaController {
             catch(EmptyListCuentaException c){
                 throw new ResponseStatusException(HttpStatus.NOT_FOUND, c.getMessage());
             }
-            // model.addAttribute("listacuentas", );
-            // model.addAttribute("cuentaMaxSaldo", cuentaService.obtenerCuentaMaxSaldo());
-            // return "CuentaView/ListCuentaView";
-           /*Preguntar como devuelvo dos datos (lista cuenta y Max Saldo) */
 
         }
         @PostMapping("/cuenta")

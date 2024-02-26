@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.rmc.ejerciciosT6.domain.Empleado;
 import com.rmc.ejerciciosT6.service.EmpleadoService;
@@ -16,6 +17,7 @@ import com.rmc.ejerciciosT6.service.EmpleadoService;
 import jakarta.validation.Valid;
 
 @Controller
+@RequestMapping("/empleado")
 public class EmpleadoController {
     @Autowired
     public EmpleadoService empleadoService;

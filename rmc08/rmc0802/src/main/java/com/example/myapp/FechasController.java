@@ -23,7 +23,7 @@ FechasService fechasService;
 
 
 
-@GetMapping({"//{fecha1}/{fecha2}"})
+@GetMapping({"/{fecha1}/{fecha2}"})
 public ResponseEntity <?> showResultados(@PathVariable String fecha1, @PathVariable String fecha2){
     
     if(fecha1 == null && fecha2 == null){

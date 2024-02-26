@@ -36,15 +36,15 @@ public class ProductoControllerApi {
 
 
     @GetMapping({"/producto"})
-    public List<Producto> getList(){
+    public ResponseEntity<?> getList(){
         List<Producto> lista = productoService.obteberLista();
-        return lista;
+        return ResponseEntity.status(HttpStatus.OK).body(lista);
     }
     @GetMapping("/producto/{idCat}")
-        public List<Producto> productoPorCategoria(@PathVariable Long idCat) {
+        public ResponseEntity<?> productoPorCategoria(@PathVariable Long idCat) {
         
         List<Producto> lista = productoService.findByCategory(idCat);
-        return lista;
+        return ResponseEntity.status(HttpStatus.OK).body(lista);
     }
     @PostMapping("/producto")
     public ResponseEntity<?> nuevoProducto(@Valid @RequestBody Producto nuevoproducto){
@@ -53,10 +53,10 @@ public class ProductoControllerApi {
     }
 
     @PutMapping("/producto/{id}")
-    public Producto editProducto(@Valid @RequestBody Producto editProducto, @PathVariable long id) {
+    public ResponseEntity<?> editProducto(@Valid @RequestBody Producto editProducto, @PathVariable long id) {
         Producto producto = productoService.obtenerPorId(id);
         // el commandobject del formulario es el empleado con el id solicitado
-        return productoService.editar(producto);
+        return ResponseEntity.status(HttpStatus.OK).body(producto);
     }
 
     @DeleteMapping("/producto/{id}")
@@ -65,7 +65,6 @@ public class ProductoControllerApi {
         productoService.borrar(id);
         return ResponseEntity.noContent().build();
     }
-
 
     
 }
